@@ -156,10 +156,9 @@
                             Lebih Layak
                         </h3>
                         <p class="text-sm mb-4 text-left font-light">
-                            Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut
-                            enim ad minim veniam.
+                        Pendidikan adalah kunci untuk mengubah hidup. Dengan mendukung kampanye ini,  
+                        Donasi Anda akan digunakan untuk membangun sekolah, 
+                        melatih guru, dan menyediakan fasilitas belajar yang memadai.
                         </p>
                         <div class="bg-[#F8F4E8] h-3 w-full rounded-full mb-4">
                             <div class="bg-[#EC5A49] h-3 w-[57%] rounded-full"></div>
@@ -175,14 +174,14 @@
                     <div class="p-6 px-12 flex flex-col">
                         <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">Dana Bencana Alam</span>
                         <h3 class="text-xl font-bold my-2 text-left">
-                            Membantu Dalam Bentuk Financial Untuk Korban
+                            Membantu Dalam Bentuk Finansial Untuk Korban
                             Bencana Alam
                         </h3>
                         <p class="text-sm mb-4 text-left font-light">
-                            Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut
-                            enim ad minim veniam.
+                        Bencana alam telah merenggut banyak hal dari mereka. 
+                        Mari ulurkan tangan dengan memberikan bantuan finansial untuk meringankan beban para korban. 
+                        Donasi Anda akan digunakan untuk memenuhi kebutuhan mendesak mereka seperti makanan, pakaian, 
+                        obat-obatan, dan tempat tinggal sementara.
                         </p>
                         <div class="bg-[#F8F4E8] h-3 w-full rounded-full mb-4">
                             <div class="bg-[#EC5A49] h-3 w-[13%] rounded-full"></div>
@@ -196,16 +195,14 @@
                     <img alt="Project image 1" class="mb-4 rounded-lg w-full max-h-64 object-cover"
                         src="/project3.webp" />
                     <div class="p-6 px-12 flex flex-col">
-                        <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">Dana Bencana Alam</span>
+                        <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">Dana Sosial</span>
                         <h3 class="text-xl font-bold my-2 text-left">
-                            Membantu Dalam Bentuk Financial Untuk Korban
-                            Bencana Alam
+                            Membantu Anak - Anak di Panti Asuhan
                         </h3>
                         <p class="text-sm mb-4 text-left font-light">
-                            Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut
-                            enim ad minim veniam.
+                        Yuk, jadi pahlawan bagi anak-anak yang membutuhkan! Donasi Anda, 
+                        sekecil apapun, akan sangat berarti bagi mereka. 
+                        Mari bersama-sama berikan senyuman dan harapan baru bagi anak-anak di panti asuhan.
                         </p>
                         <div class="bg-[#F8F4E8] h-3 w-full rounded-full mb-4">
                             <div class="bg-[#EC5A49] h-3 w-[13%] rounded-full"></div>
