@@ -61,7 +61,7 @@
     <div class="flex flex-row w-full h-[91vh] justify-center items-center flex-wrap lg:flex-nowrap">
         <div class="flex flex-col mx-8 lg:mx-16">
             <h1 class="font-normal text-4xl mb-8">
-                Kelompok 7
+                Kelompok 5
             </h1>
             <section>
                 <h2 class="text-[#EC5A49] text-2xl">Visi</h2>
