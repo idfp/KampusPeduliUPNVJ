@@ -66,7 +66,7 @@
             <section>
                 <h2 class="text-[#EC5A49] text-2xl">Visi</h2>
                 <p>
-                    Menjadi platform terpercaya yang memfasilitasi donasi di
+                    Menjadi platform terpercaya untuk memfasilitasi donasi di
                     lingkungan UPN "Veteran" Jakarta, yang dapat
                     memberdayakan dan meningkatkan kesejahteraan komunitas
                     kampus serta masyarakat sekitar.
