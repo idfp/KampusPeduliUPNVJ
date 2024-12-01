@@ -59,7 +59,7 @@
         </a>
     </header>
     <div class="flex flex-row w-full h-[91vh] justify-center items-center flex-wrap lg:flex-nowrap">
-        <div class="flex flex-col mx-8 lg:mx-16">
+        <div class="flex flex-col mx-8 lg:mx-6">
             <h1 class="font-normal text-4xl mb-8">
                 Kelompok 5
             </h1>
