@@ -59,14 +59,14 @@
         </a>
     </header>
     <div class="flex flex-row w-full h-[91vh] justify-center items-center flex-wrap lg:flex-nowrap">
-        <div class="flex flex-col mx-8 lg:mx-16">
+        <div class="flex flex-col mx-8 lg:mx-6">
             <h1 class="font-normal text-4xl mb-8">
                 Kelompok 5
             </h1>
             <section>
                 <h2 class="text-[#EC5A49] text-2xl">Visi</h2>
                 <p>
-                    Menjadi platform terpercaya untuk memfasilitasi donasi di
+                    Menjadi platform terpercaya yang memfasilitasi donasi di
                     lingkungan UPN "Veteran" Jakarta, yang dapat
                     memberdayakan dan meningkatkan kesejahteraan komunitas
                     kampus serta masyarakat sekitar.
