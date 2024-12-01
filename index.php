@@ -208,7 +208,7 @@
                             <div class="bg-[#EC5A49] h-3 w-[13%] rounded-full"></div>
                         </div>
                         <p class="text-sm mr-auto">
-                            Terkumpul Rp. 1,000,000 / Rp. 7,500,000
+                            Terkumpul Rp. 2,000,000 / Rp. 7,500,000
                         </p>
                     </div>
                 </div>
