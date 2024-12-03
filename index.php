@@ -192,7 +192,7 @@
                             <div class="flex flex-row mt-auto">
                                 <div class="flex flex-col">
                                     <div class="bg-[#F8F4E8] h-3 w-full rounded-full mb-4">
-                                        <div class="bg-[#EC5A49] h-3" style="width: ${progress}%;"></div>
+                                        <div class="bg-[#EC5A49] h-3 rounded-full" style="width: ${progress}%;"></div>
                                     </div>
                                     <p class="text-sm mr-auto">
                                         Terkumpul Rp. ${parseInt(project.donation).toLocaleString('id-ID')} / Rp. ${parseInt(project.donation_target).toLocaleString('id-ID')}
