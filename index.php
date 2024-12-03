@@ -145,74 +145,8 @@
             <p class="text-lg mb-8 text-black font-light">
                 MISI DAN TUJUAN ORGANISASI KAMI
             </p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mx-4">
-                <div class="bg-teal-900 text-white rounded-lg">
-                    <img alt="Project image 1" class="mb-4 rounded-lg w-full max-h-64 object-cover"
-                        src="/project1.webp" />
-                    <div class="p-6 px-12 flex flex-col">
-                        <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">Dana Pendidikan Anak</span>
-                        <h3 class="text-xl font-bold my-2 text-left">
-                            Membantu Anak Anak Mendapatkan Pendidikan Yang
-                            Lebih Layak
-                        </h3>
-                        <p class="text-sm mb-4 text-left font-light">
-                        Pendidikan adalah kunci untuk mengubah hidup. Dengan mendukung kampanye ini,  
-                        Donasi Anda akan digunakan untuk membangun sekolah, 
-                        melatih guru, dan menyediakan fasilitas belajar yang memadai.
-                        </p>
-                        <div class="bg-[#F8F4E8] h-3 w-full rounded-full mb-4">
-                            <div class="bg-[#EC5A49] h-3 w-[57%] rounded-full"></div>
-                        </div>
-                        <p class="text-sm mr-auto">
-                            Terkumpul Rp. 2,000,000 / Rp. 3,500,000
-                        </p>
-                    </div>
-                </div>
-                <div class="bg-teal-900 text-white rounded-lg">
-                    <img alt="Project image 1" class="mb-4 rounded-lg w-full max-h-64 object-cover"
-                        src="/project2.webp" />
-                    <div class="p-6 px-12 flex flex-col">
-                        <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">Dana Bencana Alam</span>
-                        <h3 class="text-xl font-bold my-2 text-left">
-                            Membantu Dalam Bentuk Finansial Untuk Korban
-                            Bencana Alam
-                        </h3>
-                        <p class="text-sm mb-4 text-left font-light">
-                        Bencana alam telah merenggut banyak hal dari mereka. 
-                        Mari ulurkan tangan dengan memberikan bantuan finansial untuk meringankan beban para korban. 
-                        Donasi Anda akan digunakan untuk memenuhi kebutuhan mendesak mereka seperti makanan, pakaian, 
-                        obat-obatan, dan tempat tinggal sementara.
-                        </p>
-                        <div class="bg-[#F8F4E8] h-3 w-full rounded-full mb-4">
-                            <div class="bg-[#EC5A49] h-3 w-[13%] rounded-full"></div>
-                        </div>
-                        <p class="text-sm mr-auto">
-                            Terkumpul Rp. 1,000,000 / Rp. 7,500,000
-                        </p>
-                    </div>
-                </div>
-                <div class="bg-teal-900 text-white rounded-lg">
-                    <img alt="Project image 1" class="mb-4 rounded-lg w-full max-h-64 object-cover"
-                        src="/project3.webp" />
-                    <div class="p-6 px-12 flex flex-col">
-                        <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">Dana Sosial</span>
-                        <h3 class="text-xl font-bold my-2 text-left">
-                            Membantu Anak - Anak di Panti Asuhan
-                        </h3>
-                        <p class="text-sm mb-4 text-left font-light">
-                        Yuk, jadi pahlawan bagi anak-anak yang membutuhkan! Donasi Anda, 
-                        sekecil apapun, akan sangat berarti bagi mereka. 
-                        Mari bersama-sama berikan senyuman dan harapan baru bagi anak-anak di panti asuhan.
-                        </p>
-                        <div class="bg-[#F8F4E8] h-3 w-full rounded-full mb-4">
-                            <div class="bg-[#EC5A49] h-3 w-[13%] rounded-full"></div>
-                        </div>
-                        <p class="text-sm mr-auto">
-                            Terkumpul Rp. 1,000,000 / Rp. 7,500,000
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <!-- project container for list project -->
+            <div id="project-container" class="grid grid-cols-1 md:grid-cols-3 gap-8 mx-4"></div>
         </div>
     </section>
     <footer class="bg-teal-900 text-white py-10 flex flex-col">
@@ -234,5 +168,50 @@
         </p>
     </footer>
 </body>
+<script>
+    fetch('/api/projects/')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('project-container');
+            container.innerHTML = '';
 
+            data.forEach(project => {
+                const progress = (project.donation / project.donation_target) * 100;
+                const projectHTML = `
+                    <div class="bg-teal-900 text-white rounded-lg">
+                        <img alt="${project.title}" class="mb-4 rounded-lg w-full max-h-64 object-cover"
+                            src="/project${project.id}.webp" />
+                        <div class="py-6 px-9 flex flex-col">
+                            <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">${project.category}</span>
+                            <h3 class="text-xl font-bold my-2 text-left">
+                                ${project.title}
+                            </h3>
+                            <p class="text-sm mb-4 text-left font-light">
+                                ${project.description}
+                            </p>
+                            <div class="flex flex-row gap-3">
+                                <div class="flex flex-col">
+                                    <div class="bg-[#F8F4E8] h-3 w-full rounded-full mb-4">
+                                        <div class="bg-[#EC5A49] h-3" style="width: ${progress}%;"></div>
+                                    </div>
+                                    <p class="text-sm mr-auto">
+                                        Terkumpul Rp. ${parseInt(project.donation).toLocaleString('id-ID')} / Rp. ${parseInt(project.donation_target).toLocaleString('id-ID')}
+                                    </p>
+                                </div>
+                                <div class="flex justify-center items-center">
+                                    <a class="bg-[#EC5A49] text-white px-5 py-3 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0" 
+                                    href="/donation/"> Donasi</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                container.insertAdjacentHTML('beforeend', projectHTML);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching project data:', error);
+        });
+</script>
 </html>
