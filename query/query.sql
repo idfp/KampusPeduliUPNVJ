@@ -68,3 +68,17 @@ INSERT INTO reports (donation_id, report_date, details, impact) VALUES
 (8, '2023-11-01 13:20:00', 'Inisiatif kesehatan masyarakat', 'Melayani lebih dari 100 keluarga'),
 (9, '2023-11-05 09:55:00', 'Menyponsori acara lokal', 'Mengajak lebih dari 250 peserta'),
 (10, '2023-11-10 16:40:00', 'Pengembangan sumber daya online', 'Menjangkau 1.000 penonton');
+
+CREATE TABLE project (
+    id INT(11) PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255),
+    description TEXT,
+    category ENUM('Pendidikan', 'Bencana Alam', 'Sosial'),
+    donation DECIMAL(10,2),
+    donation_target DECIMAL(10,2)
+);
+
+INSERT INTO project(title, description, category, donation, donation_target) VALUES
+('Membantu Anak Anak Mendapatkan Pendidikan Yang Lebih Layak', 'Pendidikan adalah kunci untuk mengubah hidup. Dengan mendukung kampanye ini, Donasi Anda akan digunakan untuk membangun sekolah, melatih guru, dan menyediakan fasilitas belajar yang memadai.', 1, 3000000, 3500000),
+('Membantu Dalam Bentuk Finansial Untuk Korban Bencana Alam', 'Bencana alam telah merenggut banyak hal dari mereka. Mari ulurkan tangan dengan memberikan bantuan finansial untuk meringankan beban para korban. Donasi Anda akan digunakan untuk memenuhi kebutuhan mendesak mereka seperti makanan, pakaian, obat-obatan, dan tempat tinggal sementara.', 2, 1000000, 7500000),
+('Membantu Anak - Anak di Panti Asuhan', 'Yuk, jadi pahlawan bagi anak-anak yang membutuhkan! Donasi Anda, sekecil apapun, akan sangat berarti bagi mereka. Mari bersama-sama berikan senyuman dan harapan baru bagi anak-anak di panti asuhan.', 3, 1000000, 7500000);

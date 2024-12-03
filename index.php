@@ -171,17 +171,17 @@
 <script>
     fetch('/api/projects/')
         .then(response => response.json())
-        .then(data => {
+        .then(res => {
             const container = document.getElementById('project-container');
             container.innerHTML = '';
-
+            const data = res.data
             data.forEach(project => {
                 const progress = (project.donation / project.donation_target) * 100;
                 const projectHTML = `
-                    <div class="bg-teal-900 text-white rounded-lg">
+                    <div class="bg-teal-900 text-white rounded-lg h-[550px]">
                         <img alt="${project.title}" class="mb-4 rounded-lg w-full max-h-64 object-cover"
                             src="/project${project.id}.webp" />
-                        <div class="py-6 px-9 flex flex-col">
+                        <div class="py-6 px-9 flex flex-col h-[350px]">
                             <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">${project.category}</span>
                             <h3 class="text-xl font-bold my-2 text-left">
                                 ${project.title}
@@ -189,7 +189,7 @@
                             <p class="text-sm mb-4 text-left font-light">
                                 ${project.description}
                             </p>
-                            <div class="flex flex-row gap-3">
+                            <div class="flex flex-row mt-auto">
                                 <div class="flex flex-col">
                                     <div class="bg-[#F8F4E8] h-3 w-full rounded-full mb-4">
                                         <div class="bg-[#EC5A49] h-3" style="width: ${progress}%;"></div>
@@ -198,7 +198,7 @@
                                         Terkumpul Rp. ${parseInt(project.donation).toLocaleString('id-ID')} / Rp. ${parseInt(project.donation_target).toLocaleString('id-ID')}
                                     </p>
                                 </div>
-                                <div class="flex justify-center items-center">
+                                <div class="flex justify-center items-center ml-auto">
                                     <a class="bg-[#EC5A49] text-white px-5 py-3 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0" 
                                     href="/donation/"> Donasi</a>
                                 </div>
