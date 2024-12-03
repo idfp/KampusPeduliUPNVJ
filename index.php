@@ -206,7 +206,6 @@
                         </div>
                     </div>
                 `;
-
                 container.insertAdjacentHTML('beforeend', projectHTML);
             });
         })
