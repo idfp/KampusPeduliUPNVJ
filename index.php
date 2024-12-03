@@ -25,26 +25,26 @@
 <body class="bg-teal-900 text-white">
     <header class="flex justify-between items-center p-6">
         <div class="text-lg font-bold lg:ml-16">
-            <img src="/logo.svg" />
+            <img src="logo.svg" />
         </div>
         <nav class="space-x-2 lg:space-x-6 ml-2 flex flex-row">
-            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="">
                 Home
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="/contact/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="contact">
                 Contact
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="/about_us/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="about_us">
                 About Us
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="/donation/list/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="donation/list">
                 List Donasi
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="/login/" id="login-btn">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="login" id="login-btn">
                 Masuk / Daftar
             </a>
             <script>
-                fetch("/api/my_user/", {
+                fetch("api/my_user", {
                     credentials: "include"
                 })
                     .then(x => x.json())
@@ -52,12 +52,12 @@
                         if(res.id){
                             const loginBtn = document.getElementById("login-btn")
                             loginBtn.innerText = "Dashboard"
-                            loginBtn.href = "/dashboard"
+                            loginBtn.href = "dashboard"
                         }
                     })
             </script>
         </nav>
-        <a class="bg-[#EC5A49] text-white px-8 py-2 rounded-lg hidden lg:block" href="/donation/">
+        <a class="bg-[#EC5A49] text-white px-8 py-2 rounded-lg hidden lg:block" href="donation">
             Donasi Sekarang
         </a>
     </header>
@@ -79,7 +79,7 @@
             </p>
         </div>
         <div class="mt-0 lg:ml-24 mx-4">
-            <img alt="Illustration of charity market" class="mx-auto" height="500" src="/charity.svg" width="500" />
+            <img alt="Illustration of charity market" class="mx-auto" height="500" src="charity.svg" width="500" />
             <p class="lg:text-lg text-sm mb-8 font-light text-center">
                 Dikembangkan oleh mahasiswa S1 Sistem Informasi<br />FIK UPN
                 Veteran jakarta 2023
@@ -88,7 +88,7 @@
     </main>
     <section class="bg-[#F8F4E8] text-teal-900 py-20">
         <div class="container mx-auto text-center bg-[#EC5A49] max-w-[1000px] -mt-48 rounded-3xl">
-            <div class="text-white bg-[url('/hero.webp')] pt-20 pb-10 bg-cover rounded-t-3xl">
+            <div class="text-white bg-[url('hero.webp')] pt-20 pb-10 bg-cover rounded-t-3xl">
                 <h2 class="text-4xl font-bold mb-8">
                     Berbagi adalah Kunci
                 </h2>
@@ -129,7 +129,7 @@
                     </p>
                 </div>
                 <div class="flex-1 flex flex-col">
-                    <a class="bg-teal-900 rounded-full px-8 py-4 ml-auto" href="/donation/list/">
+                    <a class="bg-teal-900 rounded-full px-8 py-4 ml-auto" href="donation/list">
                         Donasi Terkumpul
                         <i class="fas fa-arrow-right ml-2"> </i>
                     </a>
@@ -180,7 +180,7 @@
                 const projectHTML = `
                     <div class="bg-teal-900 text-white rounded-lg h-[550px]">
                         <img alt="${project.title}" class="mb-4 rounded-lg w-full max-h-64 object-cover"
-                            src="/project${project.id}.webp" />
+                            src="project${project.id}.webp" />
                         <div class="py-6 px-9 flex flex-col h-[350px]">
                             <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">${project.category}</span>
                             <h3 class="text-xl font-bold my-2 text-left">
@@ -200,7 +200,7 @@
                                 </div>
                                 <div class="flex justify-center items-center ml-auto">
                                     <a class="bg-[#EC5A49] text-white px-5 py-3 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0" 
-                                    href="/donation/"> Donasi</a>
+                                    href="donation"> Donasi</a>
                                 </div>
                             </div>
                         </div>
