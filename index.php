@@ -113,7 +113,7 @@
                         <i class="fas fa-donate text-4xl mb-2"> </i>
                         <p class="text-lg">+Rp. 200jt</p>
                         <p>Sudah Tersalurkan</p>
-                    </div>
+                    </div>  
                 </div>
             </div>
             <div
@@ -169,7 +169,7 @@
     </footer>
 </body>
 <script>
-    fetch('/api/projects/')
+    fetch(window.location.href.replace("index.php", "") + '/api/projects/')
         .then(response => response.json())
         .then(res => {
             const container = document.getElementById('project-container');
@@ -192,7 +192,7 @@
                             <div class="flex flex-row mt-auto">
                                 <div class="flex flex-col">
                                     <div class="bg-[#F8F4E8] h-3 w-full rounded-full mb-4">
-                                        <div class="bg-[#EC5A49] h-3" style="width: ${progress}%;"></div>
+                                        <div class="bg-[#EC5A49] h-3 rounded-full" style="width: ${progress}%;"></div>
                                     </div>
                                     <p class="text-sm mr-auto">
                                         Terkumpul Rp. ${parseInt(project.donation).toLocaleString('id-ID')} / Rp. ${parseInt(project.donation_target).toLocaleString('id-ID')}
