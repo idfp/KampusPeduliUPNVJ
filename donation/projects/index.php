@@ -56,7 +56,8 @@
             </script>
         </nav>
     </header>
-    <div class="bg-[url('../../donation.webp')] bg-cover h-screen w-screen max-w-screen brightness-[70%] fixed top-0 -z-10">
+    <div
+        class="bg-[url('../../donation.webp')] bg-cover h-screen w-screen max-w-screen brightness-[70%] fixed top-0 -z-10">
     </div>
     <div>
         <h1 class="text-2xl lg:text-4xl text-center mt-36 lg:mt-72 mb-16">
@@ -66,29 +67,74 @@
         <div class="w-[90vw] lg:w-[90vw] bg-[#F8F4E8] mx-auto rounded-t-[35px] px-4 lg:px-16 py-10 text-black">
             <h1 class="font-bold text-center text-xl lg:text-2xl">Carilah donasi sebanyak mungkin</h1>
             <div class="flex justify-center gap-x-8 mt-8">
-                <input type="text" class="py-3 px-6 text-lg w-full max-w-[500px] rounded-full" onchange="" placeholder="Tuliskan judul donasi yang ingin dicari...">
-                <select name="category" id="category" class="py-3 text-lg w-full max-w-[300px] rounded-full">
-                    <option value="Pendidikan">Dana Pendidikan</option>
-                    <option value="Bencana Alam">Dana Bencana Alam</option>
-                    <option value="Sosial">Dana sosial</option>
-                </select>
+                <input id="search" type="text" class="py-3 px-6 text-lg w-full max-w-[500px] rounded-full" onchange=""
+                    placeholder="Tuliskan judul donasi yang ingin dicari...">
+                <div class="bg-white px-6 rounded-full flex justify-center items-center">
+                    <select id="category" name="category" id="category"
+                        class="py-3 text-lg w-full max-w-[300px] rounded-full focus:outline-none">
+                        <option value="Semua">Semua</option>
+                        <option value="Pendidikan">Dana Pendidikan</option>
+                        <option value="Bencana Alam">Dana Bencana Alam</option>
+                        <option value="Sosial">Dana sosial</option>
+                    </select>
+                </div>
             </div>
             <div class="mt-8">
-                <div id="project-container" class="flex flex-row flex-wrap justify-center gap-5 cursor-grab active:cursor-grabbing transition-transform duration-300 ease-linear"></div>
+                <div id="project-container"
+                    class="flex flex-row flex-wrap justify-center gap-5 cursor-grab active:cursor-grabbing transition-transform duration-300 ease-linear">
+                </div>
             </div>
         </div>
     </div>
 </body>
 <script>
-    fetch('../../api/projects/')
-        .then(response => response.json())
-        .then(res => {
-            const container = document.getElementById('project-container');
-            container.innerHTML = '';
-            const data = res.data
-            data.forEach(project => {
-                const progress = (project.donation / project.donation_target) * 100;
-                const projectHTML = `
+    let projectData;
+
+    const search = document.getElementById("search")
+    const category = document.getElementById("category")
+
+    search.addEventListener("input", (e) => {
+        const searchTerm = e.target.value
+        let result = []
+        projectData.forEach(d => {
+            if (d.category === category.value || category.value === "Semua") {
+                if (d.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    result.push(d)
+                } else if (d.description.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    result.push(d)
+                }
+            }
+        })
+        render(result)
+    })
+    category.addEventListener("change", (e) => {
+        const searchTerm = search.value
+        let result = []
+        projectData.forEach(d => {
+            if (d.category === e.target.value || category.value === "Semua") {
+
+                if (d.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    result.push(d)
+                } else if (d.description.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    result.push(d)
+                }
+            }
+        })
+        render(result)
+    })
+    function render(data) {
+        const container = document.getElementById('project-container');
+        container.innerHTML = '';
+        if(data.length == 0){
+            container.innerHTML = `
+            <h1 class="text-xl my-8">Project tidak ditemukan</h1>
+            `;
+            return
+        }
+        let html = ``
+        data.forEach(project => {
+            const progress = (project.donation / project.donation_target) * 100;
+            const projectHTML = `
                     <div class="bg-teal-900 text-white rounded-lg h-[540px] max-w-[450px]">
                         <img alt="${project.title}" class="mb-4 rounded-lg w-full h-48 object-cover"
                             src="../../project${project.id}.webp" />
@@ -117,11 +163,21 @@
                         </div>
                     </div>`
                 ;
-                container.insertAdjacentHTML('beforeend', projectHTML);
-            });
+            html = html + projectHTML
+        });
+        container.innerHTML = html;
+    }
+    fetch('../../api/projects/')
+        .then(response => response.json())
+        .then(res => {
+            const data = res.data
+            projectData = data
+            activeProjects = data
+            render(data)
         })
         .catch(error => {
             console.error('Error fetching project data:', error);
         });
 </script>
+
 </html>
