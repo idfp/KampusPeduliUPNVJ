@@ -25,23 +25,23 @@
             <img src="/logo.svg" />
         </div>
         <nav class="space-x-2 lg:space-x-6 ml-2 flex flex-row">
-            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="../">
                 Home
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="/contact/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="../contact/">
                 Contact
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="/about_us/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../about_us/">
                 About Us
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="/donation/list/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../donation/list/">
                 List Donasi
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="/login/" id="login-btn">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../login/" id="login-btn">
                 Masuk / Daftar
             </a>
             <script>
-                fetch("/api/my_user/", {
+                fetch("../api/my_user/", {
                     credentials: "include"
                 })
                     .then(x => x.json())
@@ -49,12 +49,12 @@
                         if (res.id) {
                             const loginBtn = document.getElementById("login-btn")
                             loginBtn.innerText = "Dashboard"
-                            loginBtn.href = "/dashboard"
+                            loginBtn.href = "../dashboard"
                         }
                     })
             </script>
         </nav>
-        <a class="bg-[#EC5A49] text-white px-8 py-2 rounded-lg hidden lg:block" href="/donation/">
+        <a class="bg-[#EC5A49] text-white px-8 py-2 rounded-lg hidden lg:block" href="../donation/">
             Donasi Sekarang
         </a>
     </header>

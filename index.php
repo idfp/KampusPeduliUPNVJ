@@ -31,16 +31,16 @@
             <a class="text-white hover:text-red-500 text-md lg:text-lg" href="">
                 Home
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="contact">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="contact/">
                 Contact
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="about_us">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="about_us/">
                 About Us
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="donation/list">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="donation/list/">
                 List Donasi
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="login" id="login-btn">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="login/" id="login-btn">
                 Masuk / Daftar
             </a>
             <script>
@@ -68,8 +68,9 @@
                 Dana Menjadi<br />
                 Amal Jariyah
             </h1>
+
             <a class="bg-[#EC5A49] text-white px-6 py-3 rounded-lg mb-4 inline-flex items-center hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0"
-                href="/donation/">
+                href="donation/">
                 Donasi Sekarang
                 <i class="fas fa-arrow-right ml-2"> </i>
             </a>
@@ -129,7 +130,7 @@
                     </p>
                 </div>
                 <div class="flex-1 flex flex-col">
-                    <a class="bg-teal-900 rounded-full px-8 py-4 ml-auto" href="donation/list">
+                    <a class="bg-teal-900 rounded-full px-8 py-4 ml-auto" href="donation/list/">
                         Donasi Terkumpul
                         <i class="fas fa-arrow-right ml-2"> </i>
                     </a>
@@ -147,7 +148,7 @@
             </p>
             <div class="m-auto w-full max-w-[1200px] text-right">
                 <a class="bg-[#EC5A49] text-white px-6 py-3 rounded-lg mb-4 inline-flex items-center hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0"
-                    href="/donations/projects/">
+                    href="donations/projects/">
                     lihat yang lainnya
                     <i class="fas fa-arrow-right ml-2"> </i>
                 </a>
