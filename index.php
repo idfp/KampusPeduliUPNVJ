@@ -31,16 +31,16 @@
             <a class="text-white hover:text-red-500 text-md lg:text-lg" href="">
                 Home
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="contact">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="contact/">
                 Contact
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="about_us">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="about_us/">
                 About Us
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="donation/list">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="donation/list/">
                 List Donasi
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="login" id="login-btn">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="login/" id="login-btn">
                 Masuk / Daftar
             </a>
             <script>
@@ -57,7 +57,7 @@
                     })
             </script>
         </nav>
-        <a class="bg-[#EC5A49] text-white px-8 py-2 rounded-lg hidden lg:block" href="donation">
+        <a class="bg-[#EC5A49] text-white px-8 py-2 rounded-lg hidden lg:block" href="donation/">
             Donasi Sekarang
         </a>
     </header>
@@ -69,7 +69,7 @@
                 Amal Jariyah
             </h1>
             <a class="bg-[#EC5A49] text-white px-6 py-3 rounded-lg mb-4 inline-flex items-center lg:mr-auto mx-auto lg:ml-0"
-                href="/donation/">
+                href="donation/">
                 Donasi Sekarang
                 <i class="fas fa-arrow-right ml-2"> </i>
             </a>
@@ -129,7 +129,7 @@
                     </p>
                 </div>
                 <div class="flex-1 flex flex-col">
-                    <a class="bg-teal-900 rounded-full px-8 py-4 ml-auto" href="donation/list">
+                    <a class="bg-teal-900 rounded-full px-8 py-4 ml-auto" href="donation/list/">
                         Donasi Terkumpul
                         <i class="fas fa-arrow-right ml-2"> </i>
                     </a>

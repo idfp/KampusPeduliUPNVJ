@@ -54,7 +54,7 @@ include "../connection.php";
         }).then(x => x.json())
             .then(res => {
                 if (res.status && res.status === "unauthorized") {
-                    window.location.href = "/"
+                    window.location.href = "../"
                     return
                 }
                 render(res.id, res.name, res.email, res.phone)
@@ -70,7 +70,7 @@ include "../connection.php";
             data.append("phone", phone);
 
 
-            fetch("/api/my_user/", {
+            fetch("../api/my_user/", {
                 method: "POST",
                 body: data,
                 credentials: "include"
@@ -85,14 +85,14 @@ include "../connection.php";
 
         }
         function deleteAccount(){
-            fetch("/api/my_user/", {
+            fetch("../api/my_user/", {
                 method: "DELETE",
                 credentials:"include"
             })
             .then(x=>x.json())
             .then(x=>{
                 if(x.status === "success"){
-                    window.location.href = "/"
+                    window.location.href = "../"
                 }
             })
         }
@@ -111,27 +111,27 @@ include "../connection.php";
     </script>
     <header class="flex justify-between items-center p-6">
         <div class="text-lg font-bold lg:ml-16">
-            <img src="/logo.svg" />
+            <img src="../logo.svg" />
         </div>
         <nav class="space-x-2 lg:space-x-6 ml-2 flex flex-row">
-            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="../">
                 Home
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="/contact/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="../contact/">
                 Contact
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="/about_us/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../about_us/">
                 About Us
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="/donation/list/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../donation/list/">
                 List Donasi
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="/logout/" >
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../logout/" >
                 Logout
             </a>
             
         </nav>
-        <a class="bg-[#EC5A49] text-white px-8 py-2 rounded-lg hidden lg:block" href="/donation/">
+        <a class="bg-[#EC5A49] text-white px-8 py-2 rounded-lg hidden lg:block" href="../donation/">
             Donasi Sekarang
         </a>
     </header>
