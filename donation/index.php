@@ -238,6 +238,7 @@
                 dropdownMenu.classList.add("hidden");
             }
         });
+        
         function sendMessage() {
             const name = document.getElementById("name").value
             const email = document.getElementById("email").value

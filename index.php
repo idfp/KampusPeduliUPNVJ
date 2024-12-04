@@ -194,7 +194,7 @@
                         <img alt="${project.title}" class="mb-4 rounded-lg w-full h-48 object-cover"
                             src="project${project.id}.webp" />
                         <div class="py-5 px-8 flex flex-col h-[320px]">
-                            <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">${project.category}</span>
+                            <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">Bantuan ${project.category}</span>
                             <h3 class="text-xl font-bold my-2 text-left">
                                 ${project.title}
                             </h3>

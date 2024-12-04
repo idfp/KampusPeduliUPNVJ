@@ -64,11 +64,17 @@
             Donasi sekarang dan rasakan sensasi jadi orang baik!
         </h1>
         <div class="w-[90vw] lg:w-[90vw] bg-[#F8F4E8] mx-auto rounded-t-[35px] px-4 lg:px-16 py-10 text-black">
-            <h1 class="font-bold text-xl lg:text-2xl">Carilah donasi sebanyak mungkin</h1>
+            <h1 class="font-bold text-center text-xl lg:text-2xl">Carilah donasi sebanyak mungkin</h1>
+            <div class="flex justify-center gap-x-8 mt-8">
+                <input type="text" class="py-3 px-6 text-lg w-full max-w-[500px] rounded-full" onchange="" placeholder="Tuliskan judul donasi yang ingin dicari...">
+                <select name="category" id="category" class="py-3 text-lg w-full max-w-[300px] rounded-full">
+                    <option value="Pendidikan">Dana Pendidikan</option>
+                    <option value="Bencana Alam">Dana Bencana Alam</option>
+                    <option value="Sosial">Dana sosial</option>
+                </select>
+            </div>
             <div class="mt-8">
-                <div id="project-container" class="flex flex-row flex-wrap gap-8 cursor-grab active:cursor-grabbing transition-transform duration-300 ease-linear">
-                    
-                </div>
+                <div id="project-container" class="flex flex-row flex-wrap justify-center gap-5 cursor-grab active:cursor-grabbing transition-transform duration-300 ease-linear"></div>
             </div>
         </div>
     </div>
@@ -83,11 +89,11 @@
             data.forEach(project => {
                 const progress = (project.donation / project.donation_target) * 100;
                 const projectHTML = `
-                    <div class="bg-teal-900 text-white rounded-lg h-[540px] max-w-[500px]">
+                    <div class="bg-teal-900 text-white rounded-lg h-[540px] max-w-[450px]">
                         <img alt="${project.title}" class="mb-4 rounded-lg w-full h-48 object-cover"
                             src="../../project${project.id}.webp" />
                         <div class="py-6 px-9 flex flex-col h-[320px]">
-                            <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">${project.category}</span>
+                            <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">Bantuan ${project.category}</span>
                             <h3 class="text-xl font-bold my-2 text-left">
                                 ${project.title}
                             </h3>
@@ -105,7 +111,7 @@
                                 </div>
                                 <div class="flex justify-center items-center ml-auto">
                                     <a class="bg-[#EC5A49] text-white px-5 py-3 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0" 
-                                    href="donation"> Donasi</a>
+                                    href="../../donation"> Donasi</a>
                                 </div>
                             </div>
                         </div>
