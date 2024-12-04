@@ -65,14 +65,14 @@
         </h1>
         <div class="w-[90vw] lg:w-[90vw] bg-[#F8F4E8] mx-auto rounded-t-[35px] px-4 lg:px-16 py-10 text-black">
             <h1 class="font-bold text-xl lg:text-2xl">Carilah donasi sebanyak mungkin</h1>
-            <div class="overflow-x-auto mt-8">
-                <div id="project-container" class="flex gap-8 cursor-grab active:cursor-grabbing transition-transform duration-300 ease-linear"></div>
+            <div class="mt-8">
+                <div id="project-container" class="flex flex-row flex-wrap gap-8 cursor-grab active:cursor-grabbing transition-transform duration-300 ease-linear"></div>
             </div>
         </div>
     </div>
 </body>
 <script>
-    fetch(window.location.href.replace("index.php", "") + '/api/projects/')
+    fetch('../../api/projects/')
         .then(response => response.json())
         .then(res => {
             const container = document.getElementById('project-container');
@@ -81,9 +81,9 @@
             data.forEach(project => {
                 const progress = (project.donation / project.donation_target) * 100;
                 const projectHTML = `
-                    <div class="bg-teal-900 text-white rounded-lg h-[540px]">
-                        <img alt="${project.title}" class="mb-4 rounded-lg w-full max-h-64 object-cover"
-                            src="project${project.id}.webp" />
+                    <div class="bg-teal-900 text-white rounded-lg h-[540px] max-w-[500px]">
+                        <img alt="${project.title}" class="mb-4 rounded-lg w-full h-48 object-cover"
+                            src="../../project${project.id}.webp" />
                         <div class="py-6 px-9 flex flex-col h-[320px]">
                             <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">${project.category}</span>
                             <h3 class="text-xl font-bold my-2 text-left">
