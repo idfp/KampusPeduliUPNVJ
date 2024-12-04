@@ -154,8 +154,8 @@
                 </a>
             </div>
             <!-- Slider Container -->
-            <div id="slider-wrapper" class="overflow-hidden relative w-full max-w-[1200px] my-0 mx-auto">
-                <div id="project-container" class="flex gap-8 cursor-grab active:cursor-grabbing transition-transform duration-300 ease-linear"></div>
+            <div id="slider-wrapper" class="relative w-full max-w-[1400px] my-0 mx-auto overflow-x-auto py-4">
+                <div id="project-container" class="flex flex-row gap-3"></div>
             </div>
         </div>
     </section>
@@ -180,53 +180,7 @@
 </body>
 <script>
     const projectContainer = document.getElementById("project-container");
-    let isDragging = false;
-    let startX, scrollLeft, autoScroll;
-
-    // Auto-scroll slider
-    function startAutoScroll() {
-        stopAutoScroll(); // Hentikan autoplay jika sudah berjalan
-        autoScroll = setInterval(() => {
-            projectContainer.scrollLeft += 2; // Kecepatan scroll
-            if (projectContainer.scrollLeft >= projectContainer.scrollWidth / 2) {
-                projectContainer.scrollLeft = 0; // Ulangi dari awal
-            }
-        }, 20);
-    }
-
-    function stopAutoScroll() {
-        clearInterval(autoScroll);
-    }
-
-    // Drag to Scroll
-    projectContainer.addEventListener("mousedown", (e) => {
-        isDragging = true;
-        startX = e.pageX - projectContainer.offsetLeft;
-        scrollLeft = projectContainer.scrollLeft;
-        stopAutoScroll();
-    });
-
-    projectContainer.addEventListener("mouseleave", () => {
-        isDragging = false;
-        startAutoScroll();
-    });
-
-    projectContainer.addEventListener("mouseup", () => {
-        isDragging = false;
-        startAutoScroll();
-    });
-
-    projectContainer.addEventListener("mousemove", (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.pageX - projectContainer.offsetLeft;
-        const walk = (x - startX) * 2; // Speed of scrolling
-        projectContainer.scrollLeft = scrollLeft - walk;
-    });
-
-    // Pause ketika hover
-    projectContainer.addEventListener("mouseover", stopAutoScroll);
-    projectContainer.addEventListener("mouseout", startAutoScroll);
+    
 
     fetch(window.location.href.replace("index.php", "") + '/api/projects/')
         .then(response => response.json())
@@ -237,7 +191,7 @@
                 const progress = (project.donation / project.donation_target) * 100;
                 const projectHTML = `
                     <div class="bg-teal-900 text-white rounded-lg h-[540px] w-[480px] flex-shrink-0">
-                        <img alt="${project.title}" class="mb-4 rounded-lg w-full max-h-64 object-cover"
+                        <img alt="${project.title}" class="mb-4 rounded-lg w-full h-48 object-cover"
                             src="project${project.id}.webp" />
                         <div class="py-5 px-8 flex flex-col h-[320px]">
                             <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">${project.category}</span>
@@ -266,10 +220,7 @@
                 projectContainer.insertAdjacentHTML('beforeend', projectHTML);
             });
 
-            // Clone items for infinite scroll effect
-            const clone = projectContainer.innerHTML;
-            projectContainer.insertAdjacentHTML('beforeend', clone);
-            startAutoScroll();
+
         })
         .catch(error => {
             projectContainer.innerHTML = "<p>Proyek gagal dimuat. Coba lagi nanti.</p>";
