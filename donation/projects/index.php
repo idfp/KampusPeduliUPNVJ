@@ -29,20 +29,20 @@
             <a class="text-white hover:text-red-500 text-md lg:text-lg duration-300" href="../../">
                 Home
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg duration-300" href="/contact/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg duration-300" href="../../contact/">
                 Contact
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap duration-300" href="/about_us/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap duration-300" href="../../about_us/">
                 About Us
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="/donation/list/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../../donation/list/">
                 List Donasi
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="/login/" id="login-btn">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../../login/" id="login-btn">
                 Masuk / Daftar
             </a>
             <script>
-                fetch("/api/my_user/", {
+                fetch("../../api/my_user/", {
                     credentials: "include"
                 })
                     .then(x => x.json())
@@ -66,7 +66,9 @@
         <div class="w-[90vw] lg:w-[90vw] bg-[#F8F4E8] mx-auto rounded-t-[35px] px-4 lg:px-16 py-10 text-black">
             <h1 class="font-bold text-xl lg:text-2xl">Carilah donasi sebanyak mungkin</h1>
             <div class="mt-8">
-                <div id="project-container" class="flex flex-row flex-wrap gap-8 cursor-grab active:cursor-grabbing transition-transform duration-300 ease-linear"></div>
+                <div id="project-container" class="flex flex-row flex-wrap gap-8 cursor-grab active:cursor-grabbing transition-transform duration-300 ease-linear">
+                    
+                </div>
             </div>
         </div>
     </div>
