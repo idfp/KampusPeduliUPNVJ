@@ -146,9 +146,9 @@
             <p class="text-lg mb-8 text-black font-light">
                 MISI DAN TUJUAN ORGANISASI KAMI
             </p>
-            <div class="m-auto w-full max-w-[1200px] text-right">
+            <div class="m-auto w-full max-w-[1400px] text-right">
                 <a class="bg-[#EC5A49] text-white px-6 py-3 rounded-lg mb-4 inline-flex items-center hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0"
-                    href="donations/projects/">
+                    href="donation/projects/">
                     lihat yang lainnya
                     <i class="fas fa-arrow-right ml-2"> </i>
                 </a>
