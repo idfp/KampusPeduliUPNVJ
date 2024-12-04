@@ -91,19 +91,19 @@ include "../connection.php";
             <img src="/logo.svg" />
         </div>
         <nav class="space-x-2 lg:space-x-6 ml-2 flex flex-row">
-            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="../">
                 Home
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="/contact/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="../contact/">
                 Contact
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="/about_us/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../about_us/">
                 About Us
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="/donation/list/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../donation/list/">
                 List Donasi
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="/login/" id="login-btn">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../login/" id="login-btn">
                 Masuk / Daftar
             </a>
             <script>
@@ -120,7 +120,7 @@ include "../connection.php";
                     })
             </script>
         </nav>
-        <a class="bg-[#EC5A49] text-white px-8 py-2 rounded-lg hidden lg:block" href="/donation/">
+        <a class="bg-[#EC5A49] text-white px-8 py-2 rounded-lg hidden lg:block" href="../donation/">
             Donasi Sekarang
         </a>
     </header>
@@ -169,7 +169,7 @@ include "../connection.php";
 
             </div>
             <span id="register-error" class="text-red-400 mb-4"></span>
-            <span class="ml-auto">Sudah memiliki akun? <a href="/login" class="text-[#EC5A49]">Login</a></span>
+            <span class="ml-auto">Sudah memiliki akun? <a href="../login/" class="text-[#EC5A49]">Login</a></span>
             <button
                 class="bg-[#EC5A49] text-[#F8F4E8]-900 px-8 py-2 rounded-lg mt-4 hover:opacity-60 active:scale-[.98] duration-300"
                 onclick="register()">

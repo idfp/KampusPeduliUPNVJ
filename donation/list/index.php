@@ -23,26 +23,26 @@
 
     <header class="flex justify-between items-center p-6 z-50">
         <div class="text-lg font-bold -ml-4 lg:ml-16">
-            <img src="/logo.svg" />
+            <img src="../logo.svg" />
         </div>
         <nav class="space-x-2 lg:space-x-6 ml-4 flex flex-row ml-auto mr-auto">
-            <a class="text-white hover:text-red-500 text-md lg:text-lg duration-300" href="/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg duration-300" href="../../">
                 Home
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg duration-300" href="/contact/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg duration-300" href="../../contact/">
                 Contact
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap duration-300" href="/about_us/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap duration-300" href="../../about_us/">
                 About Us
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="/donation/list/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../../donation/list/">
                 List Donasi
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="/login/" id="login-btn">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../../login/" id="login-btn">
                 Masuk / Daftar
             </a>
             <script>
-                fetch("/api/my_user/", {
+                fetch("../../api/my_user/", {
                     credentials: "include"
                 })
                     .then(x => x.json())
@@ -56,7 +56,7 @@
             </script>
         </nav>
     </header>
-    <div class="bg-[url('/donation.webp')] bg-cover h-screen w-screen max-w-screen brightness-[70%] fixed top-0 -z-10">
+    <div class="bg-[url('../../donation.webp')] bg-cover h-screen w-screen max-w-screen brightness-[70%] fixed top-0 -z-10">
     </div>
     <div>
         <h1 class="text-2xl lg:text-4xl text-center mt-36 lg:mt-72 mb-16">
@@ -108,7 +108,7 @@
                 minimumFractionDigits: 0,
             }).format(number);
         }
-        fetch("/api/donation/")
+        fetch("../../api/donation/")
             .then(x => x.json())
             .then(donations => {
                 const tbody = document.getElementById("table-body")
