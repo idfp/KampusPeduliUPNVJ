@@ -57,7 +57,7 @@
                     })
             </script>
         </nav>
-        <a class="bg-[#EC5A49] text-white px-8 py-2 rounded-lg hidden lg:block" href="donation">
+        <a class="bg-[#EC5A49] text-white px-8 py-2 rounded-lg hover:opacity-50 active:scale-97 duration-300 hidden lg:block" href="donation">
             Donasi Sekarang
         </a>
     </header>
@@ -68,7 +68,7 @@
                 Dana Menjadi<br />
                 Amal Jariyah
             </h1>
-            <a class="bg-[#EC5A49] text-white px-6 py-3 rounded-lg mb-4 inline-flex items-center lg:mr-auto mx-auto lg:ml-0"
+            <a class="bg-[#EC5A49] text-white px-6 py-3 rounded-lg mb-4 inline-flex items-center hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0"
                 href="/donation/">
                 Donasi Sekarang
                 <i class="fas fa-arrow-right ml-2"> </i>
@@ -145,8 +145,17 @@
             <p class="text-lg mb-8 text-black font-light">
                 MISI DAN TUJUAN ORGANISASI KAMI
             </p>
-            <!-- project container for list project -->
-            <div id="project-container" class="grid grid-cols-1 md:grid-cols-3 gap-8 mx-4"></div>
+            <div class="m-auto w-full max-w-[1200px] text-right">
+                <a class="bg-[#EC5A49] text-white px-6 py-3 rounded-lg mb-4 inline-flex items-center hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0"
+                    href="/donations/projects/">
+                    lihat yang lainnya
+                    <i class="fas fa-arrow-right ml-2"> </i>
+                </a>
+            </div>
+            <!-- Slider Container -->
+            <div id="slider-wrapper" class="overflow-hidden relative w-full max-w-[1200px] my-0 mx-auto">
+                <div id="project-container" class="flex gap-8 cursor-grab active:cursor-grabbing transition-transform duration-300 ease-linear"></div>
+            </div>
         </div>
     </section>
     <footer class="bg-teal-900 text-white py-10 flex flex-col">
@@ -169,24 +178,72 @@
     </footer>
 </body>
 <script>
+    const projectContainer = document.getElementById("project-container");
+    let isDragging = false;
+    let startX, scrollLeft, autoScroll;
+
+    // Auto-scroll slider
+    function startAutoScroll() {
+        stopAutoScroll(); // Hentikan autoplay jika sudah berjalan
+        autoScroll = setInterval(() => {
+            projectContainer.scrollLeft += 2; // Kecepatan scroll
+            if (projectContainer.scrollLeft >= projectContainer.scrollWidth / 2) {
+                projectContainer.scrollLeft = 0; // Ulangi dari awal
+            }
+        }, 20);
+    }
+
+    function stopAutoScroll() {
+        clearInterval(autoScroll);
+    }
+
+    // Drag to Scroll
+    projectContainer.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        startX = e.pageX - projectContainer.offsetLeft;
+        scrollLeft = projectContainer.scrollLeft;
+        stopAutoScroll();
+    });
+
+    projectContainer.addEventListener("mouseleave", () => {
+        isDragging = false;
+        startAutoScroll();
+    });
+
+    projectContainer.addEventListener("mouseup", () => {
+        isDragging = false;
+        startAutoScroll();
+    });
+
+    projectContainer.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - projectContainer.offsetLeft;
+        const walk = (x - startX) * 2; // Speed of scrolling
+        projectContainer.scrollLeft = scrollLeft - walk;
+    });
+
+    // Pause ketika hover
+    projectContainer.addEventListener("mouseover", stopAutoScroll);
+    projectContainer.addEventListener("mouseout", startAutoScroll);
+
     fetch(window.location.href.replace("index.php", "") + '/api/projects/')
         .then(response => response.json())
         .then(res => {
-            const container = document.getElementById('project-container');
-            container.innerHTML = '';
-            const data = res.data
+            const data = res.data;
+            projectContainer.innerHTML = '';
             data.forEach(project => {
                 const progress = (project.donation / project.donation_target) * 100;
                 const projectHTML = `
-                    <div class="bg-teal-900 text-white rounded-lg h-[550px]">
+                    <div class="bg-teal-900 text-white rounded-lg h-[540px] w-[480px] flex-shrink-0">
                         <img alt="${project.title}" class="mb-4 rounded-lg w-full max-h-64 object-cover"
                             src="project${project.id}.webp" />
-                        <div class="py-6 px-9 flex flex-col h-[350px]">
+                        <div class="py-5 px-8 flex flex-col h-[320px]">
                             <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">${project.category}</span>
                             <h3 class="text-xl font-bold my-2 text-left">
                                 ${project.title}
                             </h3>
-                            <p class="text-sm mb-4 text-left font-light">
+                            <p class="text-lg mb-4 text-left font-light text-ellipsis line-clamp-3">
                                 ${project.description}
                             </p>
                             <div class="flex flex-row mt-auto">
@@ -199,18 +256,23 @@
                                     </p>
                                 </div>
                                 <div class="flex justify-center items-center ml-auto">
-                                    <a class="bg-[#EC5A49] text-white px-5 py-3 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0" 
+                                    <a class="bg-[#EC5A49] text-lg text-white px-7 py-3 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0" 
                                     href="donation"> Donasi</a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                `;
-                container.insertAdjacentHTML('beforeend', projectHTML);
+                    </div>`;
+                projectContainer.insertAdjacentHTML('beforeend', projectHTML);
             });
+
+            // Clone items for infinite scroll effect
+            const clone = projectContainer.innerHTML;
+            projectContainer.insertAdjacentHTML('beforeend', clone);
+            startAutoScroll();
         })
         .catch(error => {
-            console.error('Error fetching project data:', error);
+            projectContainer.innerHTML = "<p>Proyek gagal dimuat. Coba lagi nanti.</p>";
         });
 </script>
+
 </html>
