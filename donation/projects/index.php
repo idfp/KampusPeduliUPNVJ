@@ -67,11 +67,13 @@
             <h1 class="font-bold text-center text-xl lg:text-2xl">Carilah donasi sebanyak mungkin</h1>
             <div class="flex justify-center gap-x-8 mt-8">
                 <input type="text" class="py-3 px-6 text-lg w-full max-w-[500px] rounded-full" onchange="" placeholder="Tuliskan judul donasi yang ingin dicari...">
-                <select name="category" id="category" class="py-3 text-lg w-full max-w-[300px] rounded-full">
-                    <option value="Pendidikan">Dana Pendidikan</option>
-                    <option value="Bencana Alam">Dana Bencana Alam</option>
-                    <option value="Sosial">Dana sosial</option>
-                </select>
+                <div class="bg-white w-full max-w-[300px] rounded-full flex justify-center items-center focus:outline-none">
+                    <select name="category" id="category" class="py-3 text-lg w-full max-w-[280px]">
+                        <option value="Pendidikan">Dana Pendidikan</option>
+                        <option value="Bencana Alam">Dana Bencana Alam</option>
+                        <option value="Sosial">Dana sosial</option>
+                    </select>
+                </div>
             </div>
             <div class="mt-8">
                 <div id="project-container" class="flex flex-row flex-wrap justify-center gap-5 cursor-grab active:cursor-grabbing transition-transform duration-300 ease-linear"></div>
