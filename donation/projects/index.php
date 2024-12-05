@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Kampus Peduli UPNVJ</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,13 +20,56 @@
 </head>
 
 <body class="bg-teal-900 text-white">
-    <div id="addProjectPopup"
+    <div id="detailProjectPopUp"
         class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden z-50">
-        <div class="bg-white rounded-lg p-6 max-w-sm w-full text-center z-50">
-            <h1 class="text-black">Tambahkan Project</h1>
-            <button id="closeAddProjectPopup" class="bg-[#EC5A49] px-4 py-2 rounded-lg">
-                Tutup
-            </button>
+        <div class="bg-teal-900 rounded-lg p-6 max-w-[900px] w-full text-center z-50">
+            <button id="closeAddProjectPopup" class="text-[#EC5A49] px-4 py-2 rounded-lg text-2xl">x</button>
+            <div class="flex flex-row gap-12">
+                <div class="w-full max-w-[500px]">
+                    <div class="mb-4 rounded-lg w-full h-60 overflow-hidden">
+                        <img alt="${project.title}" class="mb-4 rounded-lg w-full h-60 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
+                        src="../../project1.webp" />
+                    </div>
+                </div>
+                <div class="flex flex-col items-start">
+                    <h1 class="text-xl font-bold text-left mb-4">
+                        Membantu Anak Anak Mendapatkan Pendidikan Yang Lebih Layak
+                    </h1>
+                    <p class="text-lg mb-4 text-left font-light">
+                        Pendidikan adalah kunci untuk mengubah hidup. Dengan mendukung kampanye ini, Donasi Anda akan digunakan untuk membangun sekolah, melatih guru, dan menyediakan fasilitas belajar yang memadai.
+                    </p>
+                    <span class="bg-[#EC5A49] px-5 py-2 rounded-full">
+                        Bantuan Pendidikan
+                    </span>
+                </div>
+            </div>
+            <div class="text-xl font-bold my-4 text-center mb-4">
+                <h1 class="mb-4">
+                    Dokumentasi Proyek
+                </h1>
+                <div class="flex flex-row w-full justify-evenly">
+                    <div class="mb-4 rounded-lg w-full max-w-[350px] h-40 overflow-hidden">
+                        <img alt="${project.title}" class="mb-4 rounded-lg w-full h-40 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
+                        src="../../project1.webp" />
+                    </div>
+                    <div class="mb-4 rounded-lg w-full max-w-[350px] h-40 overflow-hidden">
+                        <img alt="${project.title}" class="mb-4 rounded-lg w-full h-40 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
+                        src="../../project1.webp" />
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <div class="bg-[#F8F4E8] h-3 w-full rounded-full mb-4">
+                    <div class="bg-[#EC5A49] h-3 rounded-full" style="width: ${progress}%;"></div>
+                </div>
+                <p class="text-sm mr-auto">
+                    Terkumpul Rp. ${parseInt(project.donation).toLocaleString('id-ID')} / Rp. ${parseInt(project.donation_target).toLocaleString('id-ID')}
+                </p>
+            </div>
+            <div class="text-center ml-auto mt-8">
+                <a class="bg-[#EC5A49] text-white px-24 py-6 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0" 
+                href="../../donation"> Donasi</a>
+            </div>
         </div>
     </div>
     <script>
@@ -96,32 +139,14 @@
             </div>
             <div class="mt-8">
                 <div id="project-container"
-                    class="flex flex-row flex-wrap justify-center gap-5 cursor-grab active:cursor-grabbing transition-transform duration-300 ease-linear">
+                    class="flex flex-row flex-wrap justify-center gap-5 transition-transform duration-300 ease-linear">
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        const addProjectPopup = document.getElementById('addProjectPopup');
-        const showPopupButton = document.getElementById('add-project');
-        const closeAddProjectPopup = document.getElementById('closeAddProjectPopup');
-        showPopupButton.addEventListener("click", (e) => {
-            addProjectPopup.classList.remove("hidden")
-        })
-        closeAddProjectPopup.addEventListener('click', function () {
-            addProjectPopup.classList.add('hidden');
-        });
-
-        window.addEventListener('click', function (e) {
-            if (e.target === addProjectPopup) {
-                addProjectPopup.classList.add('hidden');
-            }
-        });
-    </script>
 </body>
 <script>
     let projectData;
-
     const search = document.getElementById("search")
     const category = document.getElementById("category")
 
@@ -167,12 +192,14 @@
         data.forEach(project => {
             const progress = (project.donation / project.donation_target) * 100;
             const projectHTML = `
-                    <div class="bg-teal-900 text-white rounded-lg h-[540px] max-w-[450px]">
-                        <img alt="${project.title}" class="mb-4 rounded-lg w-full h-48 object-cover"
+                    <div id="card-project" class="bg-teal-900 text-white rounded-lg h-[540px] max-w-[450px]" onclick="document.getElementById('detailProjectPopUp').classList.remove('hidden')">
+                        <div class="mb-4 rounded-lg w-full h-48 overflow-hidden">
+                            <img alt="${project.title}" class="mb-4 rounded-lg w-full h-48 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
                             src="../../project${project.id}.webp" />
+                        </div>
                         <div class="py-6 px-9 flex flex-col h-[320px]">
                             <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">Bantuan ${project.category}</span>
-                            <h3 class="text-xl font-bold my-2 text-left">
+                            <h3 class="text-xl font-bold my-2 text-left hover:text-slate-400 hover:cursor-pointer active:cursor-pointer duration-300">
                                 ${project.title}
                             </h3>
                             <p class="text-lg mb-4 text-left font-light text-ellipsis line-clamp-3">
@@ -209,6 +236,18 @@
         })
         .catch(error => {
             console.error('Error fetching project data:', error);
+        });
+
+        const addProjectPopup = document.getElementById('detailProjectPopUp');
+        const closeAddProjectPopup = document.getElementById('closeAddProjectPopup');
+        closeAddProjectPopup.addEventListener('click', function () {
+            addProjectPopup.classList.add('hidden');
+        });
+
+        window.addEventListener('click', function (e) {
+            if (e.target === addProjectPopup) {
+                addProjectPopup.classList.add('hidden');
+            }
         });
 </script>
 
