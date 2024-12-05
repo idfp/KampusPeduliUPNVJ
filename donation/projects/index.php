@@ -71,17 +71,18 @@
                 <a class="bg-[#EC5A49] text-white px-8 py-3 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 mx-4"
                     href="../../donation"> Buat</a>
             </div>
+        </div>
     </div>
     <div id="detailProjectPopUp"
         class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden z-50">
-    </div>
         <div class="bg-teal-900 rounded-lg p-6 max-w-[900px] w-full text-center z-50">
             <button id="closeAddProjectPopup" class="text-[#EC5A49] px-4 py-2 rounded-lg text-2xl">x</button>
             <div class="flex flex-row gap-12">
                 <div class="w-full max-w-[500px]">
                     <div class="mb-4 rounded-lg w-full h-60 overflow-hidden">
-                        <img alt="${project.title}" class="mb-4 rounded-lg w-full h-60 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
-                        src="../../project1.webp" />
+                        <img alt="${project.title}"
+                            class="mb-4 rounded-lg w-full h-60 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
+                            src="../../project1.webp" />
                     </div>
                 </div>
                 <div class="flex flex-col items-start">
@@ -102,12 +103,14 @@
                 </h1>
                 <div class="flex flex-row w-full justify-evenly">
                     <div class="mb-4 rounded-lg w-full max-w-[350px] h-40 overflow-hidden">
-                        <img alt="${project.title}" class="mb-4 rounded-lg w-full h-40 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
-                        src="../../project1.webp" />
+                        <img alt="${project.title}"
+                            class="mb-4 rounded-lg w-full h-40 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
+                            src="../../project1.webp" />
                     </div>
                     <div class="mb-4 rounded-lg w-full max-w-[350px] h-40 overflow-hidden">
-                        <img alt="${project.title}" class="mb-4 rounded-lg w-full h-40 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
-                        src="../../project1.webp" />
+                        <img alt="${project.title}"
+                            class="mb-4 rounded-lg w-full h-40 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
+                            src="../../project1.webp" />
                     </div>
                 </div>
             </div>
@@ -116,14 +119,16 @@
                     <div class="bg-[#EC5A49] h-3 rounded-full" style="width: ${progress}%;"></div>
                 </div>
                 <p class="text-sm mr-auto">
-                    Terkumpul Rp. ${parseInt(project.donation).toLocaleString('id-ID')} / Rp. ${parseInt(project.donation_target).toLocaleString('id-ID')}
+                    Terkumpul Rp. ${parseInt(project.donation).toLocaleString('id-ID')} / Rp.
+                    ${parseInt(project.donation_target).toLocaleString('id-ID')}
                 </p>
             </div>
             <div class="text-center ml-auto mt-8">
-                <a class="bg-[#EC5A49] text-white px-24 py-6 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0" 
-                href="../../donation"> Donasi</a>
+                <a class="bg-[#EC5A49] text-white px-24 py-6 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0"
+                    href="../../donation"> Donasi</a>
             </div>
         </div>
+    </div>
     <script>
         window.user = {}
     </script>
@@ -217,7 +222,7 @@
 
 </body>
 <script>
-    let projectData;
+    let projectData = [];
     const search = document.getElementById("search")
     const category = document.getElementById("category")
     const target = document.getElementById("target")
@@ -226,7 +231,7 @@
         if (isNaN(parseInt(key)) && key !== "Backspace" && key !== "Delete") {
             event.preventDefault();
         }
-    });
+    })
     const uploadImage = document.getElementById("upload-image")
     const uploadImage2 = document.getElementById("upload-image2")
     const uploadImage3 = document.getElementById("upload-image3")
