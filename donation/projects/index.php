@@ -75,8 +75,10 @@
     </div>
     <div id="detailProjectPopUp"
         class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden z-50">
-        <div class="bg-teal-900 rounded-lg p-6 max-w-[900px] w-full text-center z-50">
-            <button id="closeAddProjectPopup" class="text-[#EC5A49] px-4 py-2 rounded-lg text-2xl">x</button>
+        <div class="bg-teal-900 rounded-lg p-6 max-w-[900px] w-full text-center z-50 flex flex-col">
+            <button id="closeDetailProjectPopup" class="text-[#EC5A49] px-4 py-2 rounded-lg text-2xl ml-auto">
+                x
+            </button>
             <div class="flex flex-row gap-12">
                 <div class="w-full max-w-[500px]">
                     <div class="mb-4 rounded-lg w-full h-60 overflow-hidden">
@@ -202,16 +204,22 @@
         </div>
     </div>
     <script>
-        const addProjectPopup = document.getElementById('addProjectPopup');
+        const addProjectPopup = document.getElementById('addProjectPopUp');
+        const detailProjectPopUp = document.getElementById('detailProjectPopUp');
         const showPopupButton = document.getElementById('add-project');
         const closeAddProjectPopup = document.getElementById('closeAddProjectPopup');
+        const closeDetailProjectPopup = document.getElementById('closeDetailProjectPopup')
         showPopupButton.addEventListener("click", (e) => {
             addProjectPopup.classList.remove("hidden")
         })
         closeAddProjectPopup.addEventListener('click', function () {
             addProjectPopup.classList.add('hidden');
+            console.log("closing")
         });
-
+        closeDetailProjectPopup.addEventListener('click', ()=>{
+            detailProjectPopUp.classList.add('hidden');
+            console.log("closing detail project")
+        })
         window.addEventListener('click', function (e) {
             if (e.target === addProjectPopup) {
                 addProjectPopup.classList.add('hidden');
