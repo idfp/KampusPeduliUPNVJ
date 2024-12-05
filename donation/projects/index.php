@@ -20,7 +20,18 @@
 </head>
 
 <body class="bg-teal-900 text-white">
-
+    <div id="addProjectPopup"
+        class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden z-50">
+        <div class="bg-white rounded-lg p-6 max-w-sm w-full text-center z-50">
+            <h1 class="text-black">Tambahkan Project</h1>
+            <button id="closeAddProjectPopup" class="bg-[#EC5A49] px-4 py-2 rounded-lg">
+                Tutup
+            </button>
+        </div>
+    </div>
+    <script>
+        window.user = {}
+    </script>
     <header class="flex justify-between items-center p-6 z-50">
         <div class="text-lg font-bold -ml-4 lg:ml-16">
             <img src="../../logo.svg" />
@@ -48,6 +59,7 @@
                     .then(x => x.json())
                     .then(res => {
                         if (res.id) {
+                            window.user = res
                             const loginBtn = document.getElementById("login-btn")
                             loginBtn.innerText = "Dashboard"
                             loginBtn.href = "/dashboard"
@@ -78,6 +90,9 @@
                         <option value="Sosial">Dana sosial</option>
                     </select>
                 </div>
+                <div id="add-project" class="">
+                    <button class="bg-[#EC5A49] text-white px-4 py-4 rounded-lg">Tambahkan Project </button>
+                </div>
             </div>
             <div class="mt-8 m-auto w-full max-w-[1400px] text-right">
                 <a class="bg-[#EC5A49] text-white px-5 py-3 rounded-full mb-4 inline-flex items-center gap-x-3 font-bold hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0" 
@@ -90,6 +105,23 @@
             </div>
         </div>
     </div>
+    <script>
+        const addProjectPopup = document.getElementById('addProjectPopup');
+        const showPopupButton = document.getElementById('add-project');
+        const closeAddProjectPopup = document.getElementById('closeAddProjectPopup');
+        showPopupButton.addEventListener("click", (e) => {
+            addProjectPopup.classList.remove("hidden")
+        })
+        closeAddProjectPopup.addEventListener('click', function () {
+            addProjectPopup.classList.add('hidden');
+        });
+
+        window.addEventListener('click', function (e) {
+            if (e.target === addProjectPopup) {
+                addProjectPopup.classList.add('hidden');
+            }
+        });
+    </script>
 </body>
 <script>
     let projectData;
@@ -129,7 +161,7 @@
     function render(data) {
         const container = document.getElementById('project-container');
         container.innerHTML = '';
-        if(data.length == 0){
+        if (data.length == 0) {
             container.innerHTML = `
             <h1 class="text-xl my-8">Project tidak ditemukan</h1>
             `;
