@@ -20,8 +20,61 @@
 </head>
 
 <body class="bg-teal-900 text-white">
+    <div id="addProjectPopUp"
+        class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden z-50">
+        <div class="bg-white rounded-lg p-6 max-w-md w-full text-center z-50 flex flex-col">
+            <button id="closeAddProjectPopup" class="text-[#EC5A49] px-4 py-2 rounded-lg ml-auto text-2xl">
+                x
+            </button>
+            <h1 class="text-black mb-4">Tambahkan Project</h1>
+            <input type="file" class="hidden" id="upload-image" />
+            <input type="file" class="hidden" id="upload-image2" />
+            <input type="file" class="hidden" id="upload-image3" />
+            <div class="mx-2 cursor-pointer" onclick="document.getElementById('upload-image').click()">
+                <img id="add-image-jpg" class="w-full h-48 object-cover" src="../../add-image2.jpg" />
+            </div>
+            <div class="flex flex-col mt-4">
+                <h1 class="font-bold text-md text-black mr-auto">Judul Project</h1>
+                <input id="title" placeholder="Membantu banjir" type="text"
+                    class="border-2 text-md border-gray-400 text-gray-400 rounded-xl bg-white px-6 py-3" />
+            </div>
+            <div class="flex flex-col mt-4">
+                <h1 class="font-bold text-md text-black mr-auto">Deskripsi</h1>
+                <textarea rows="4" id="description" placeholder="Menjaga banjir" type="text"
+                    class="border-2 text-md border-gray-400 text-gray-400 rounded-xl bg-white px-6 py-3"></textarea>
+            </div>
+            <h1 class="font-bold text-md text-black mr-auto mt-4">Category</h1>
+            <div class="bg-white px-6 rounded-full flex text-black">
+                <select id="categoryAdd" name="category"
+                    class="py-3 text-lg w-full max-w-[300px] rounded-full focus:outline-none">
+                    <option value="Pendidikan">Dana Pendidikan</option>
+                    <option value="Bencana Alam">Dana Bencana Alam</option>
+                    <option value="Sosial">Dana sosial</option>
+                </select>
+            </div>
+
+            <h1 class="font-bold text-md text-black mr-auto mt-4">Dokumentasi Project</h1>
+            <div class="mx-2 cursor-pointer flex gap-4">
+                <img id="add-image-jpg2" class="w-48 h-36 object-cover" src="../../add-image3.jpg"
+                    onclick="document.getElementById('upload-image2').click()" />
+                <img id="add-image-jpg3" class="w-48 h-36 object-cover" src="../../add-image3.jpg"
+                    onclick="document.getElementById('upload-image3').click()" />
+            </div>
+            <div class="flex mt-4 justify-center items-center gap-2">
+                <span class="text-black text-sm">Nominal Target Donasi:</span>
+                <input id="target" placeholder="Rp. 5.000.000,00" type="text"
+                    class="ml-auto border-2 text-md border-gray-400 text-gray-400 rounded-xl bg-white px-6 py-3" />
+            </div>
+            <div class="flex justify-center items-center mt-4">
+                <a class="cursor-pointer bg-[#EC5A49] text-white px-8 py-3 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 mx-4"
+                    onclick="document.getElementById('addProjectPopup').classList.add('hidden')"> Cancel</a>
+                <a class="bg-[#EC5A49] text-white px-8 py-3 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 mx-4"
+                    href="../../donation"> Buat</a>
+            </div>
+    </div>
     <div id="detailProjectPopUp"
         class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden z-50">
+    </div>
         <div class="bg-teal-900 rounded-lg p-6 max-w-[900px] w-full text-center z-50">
             <button id="closeAddProjectPopup" class="text-[#EC5A49] px-4 py-2 rounded-lg text-2xl">x</button>
             <div class="flex flex-row gap-12">
@@ -71,7 +124,6 @@
                 href="../../donation"> Donasi</a>
             </div>
         </div>
-    </div>
     <script>
         window.user = {}
     </script>
@@ -144,11 +196,71 @@
             </div>
         </div>
     </div>
+    <script>
+        const addProjectPopup = document.getElementById('addProjectPopup');
+        const showPopupButton = document.getElementById('add-project');
+        const closeAddProjectPopup = document.getElementById('closeAddProjectPopup');
+        showPopupButton.addEventListener("click", (e) => {
+            addProjectPopup.classList.remove("hidden")
+        })
+        closeAddProjectPopup.addEventListener('click', function () {
+            addProjectPopup.classList.add('hidden');
+        });
+
+        window.addEventListener('click', function (e) {
+            if (e.target === addProjectPopup) {
+                addProjectPopup.classList.add('hidden');
+            }
+        });
+
+    </script>
+
 </body>
 <script>
     let projectData;
     const search = document.getElementById("search")
     const category = document.getElementById("category")
+    const target = document.getElementById("target")
+    target.addEventListener("keydown", (event) => {
+        const key = event.key;
+        if (isNaN(parseInt(key)) && key !== "Backspace" && key !== "Delete") {
+            event.preventDefault();
+        }
+    });
+    const uploadImage = document.getElementById("upload-image")
+    const uploadImage2 = document.getElementById("upload-image2")
+    const uploadImage3 = document.getElementById("upload-image3")
+    let activeImage;
+    uploadImage.addEventListener("change", (e) => {
+        const files = e.target.files;
+        if (files.length > 0) {
+            console.log('Selected file:');
+            console.log(files[0]);
+            const blobUrl = URL.createObjectURL(files[0]);
+            document.getElementById("add-image-jpg").src = blobUrl
+            activeImage = files[0]
+        }
+    })
+    uploadImage2.addEventListener("change", (e) => {
+        const files = e.target.files;
+        if (files.length > 0) {
+            console.log('Selected file:');
+            console.log(files[0]);
+            const blobUrl = URL.createObjectURL(files[0]);
+            document.getElementById("add-image-jpg2").src = blobUrl
+            activeImage = files[0]
+        }
+    })
+    uploadImage3.addEventListener("change", (e) => {
+        const files = e.target.files;
+        if (files.length > 0) {
+            console.log('Selected file:');
+            console.log(files[0]);
+            const blobUrl = URL.createObjectURL(files[0]);
+            document.getElementById("add-image-jpg3").src = blobUrl
+            activeImage = files[0]
+        }
+    })
 
     search.addEventListener("input", (e) => {
         const searchTerm = e.target.value
