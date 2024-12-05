@@ -193,7 +193,7 @@
                     </select>
                 </div>
                 <div id="add-project" class="">
-                    <button class="bg-[#EC5A49] text-white px-4 py-4 rounded-lg">Tambahkan Project </button>
+                    <button class="bg-[#EC5A49] text-white px-4 py-4 rounded-lg hover:opacity-50 active:scale-97 duration-300">Tambahkan Project <span class="text-3xl">+</span></button>
                 </div>
             </div>
             <div class="mt-8">
@@ -304,6 +304,7 @@
         })
         render(result)
     })
+
     function render(data) {
         const container = document.getElementById('project-container');
         container.innerHTML = '';
@@ -321,9 +322,12 @@
                         class="bg-teal-900 text-white rounded-lg h-[540px] max-w-[450px]"
                         data-id="${project.id}"
                         onclick="showProjectDetail(${project.id})">
-                        <div class="mb-4 rounded-lg w-full h-48 overflow-hidden">
+                        <div class="relative mb-4 rounded-lg w-full h-48 overflow-hidden">
                             <img alt="${project.title}" class="mb-4 rounded-lg w-full h-48 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
                             src="../../project${project.id}.webp" />
+                            <div id="add-project" class="absolute top-[10px] right-[10px]">
+                                <button class="bg-[#EC5A49] text-white px-4 py-4 rounded-lg hover:cursor-pointer hover:opacity-70 active:scale-97 duration-300">Update</button>
+                            </div>
                         </div>
                         <div class="py-6 px-9 flex flex-col h-[320px]">
                             <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">Bantuan ${project.category}</span>
@@ -367,41 +371,29 @@
             console.error('Error fetching project data:', error);
         });
 
-        const addProjectPopup = document.getElementById('detailProjectPopUp');
-        const closeAddProjectPopup = document.getElementById('closeAddProjectPopup');
-        closeAddProjectPopup.addEventListener('click', function () {
-            addProjectPopup.classList.add('hidden');
-        });
+    function showProjectDetail(projectId) {
+        const selectedProject = projectData.find(project => project.id === projectId);
 
-        window.addEventListener('click', function (e) {
-            if (e.target === addProjectPopup) {
-                addProjectPopup.classList.add('hidden');
-            }
-        });
+        if (selectedProject) {
+            // Menghitung progress donasi
+            const progress = (selectedProject.donation / selectedProject.donation_target) * 100;
 
-        function showProjectDetail(projectId) {
-            const selectedProject = projectData.find(project => project.id === projectId);
+            // Update konten pop-up dengan data proyek
+            document.querySelector('#detailProjectPopUp img').src = `../../project${selectedProject.id}.webp`;
+            document.querySelector('#detailProjectPopUp img').alt = selectedProject.title;
+            document.querySelector('#detailProjectPopUp h1.text-xl').innerText = selectedProject.title;
+            document.querySelector('#detailProjectPopUp p.text-lg').innerText = selectedProject.description;
+            document.querySelector('#detailProjectPopUp span').innerText = `Bantuan ${selectedProject.category}`;
+            document.querySelector('#detailProjectPopUp .bg-[#EC5A49]').style.width = `${progress}%`;
+            document.querySelector('#detailProjectPopUp p.text-sm').innerText = `
+                Terkumpul Rp. ${parseInt(selectedProject.donation).toLocaleString('id-ID')} / 
+                Rp. ${parseInt(selectedProject.donation_target).toLocaleString('id-ID')}
+            `;
 
-            if (selectedProject) {
-                // Menghitung progress donasi
-                const progress = (selectedProject.donation / selectedProject.donation_target) * 100;
-
-                // Update konten pop-up dengan data proyek
-                document.querySelector('#detailProjectPopUp img').src = `../../project${selectedProject.id}.webp`;
-                document.querySelector('#detailProjectPopUp img').alt = selectedProject.title;
-                document.querySelector('#detailProjectPopUp h1.text-xl').innerText = selectedProject.title;
-                document.querySelector('#detailProjectPopUp p.text-lg').innerText = selectedProject.description;
-                document.querySelector('#detailProjectPopUp span').innerText = `Bantuan ${selectedProject.category}`;
-                document.querySelector('#detailProjectPopUp .bg-[#EC5A49]').style.width = `${progress}%`;
-                document.querySelector('#detailProjectPopUp p.text-sm').innerText = `
-                    Terkumpul Rp. ${parseInt(selectedProject.donation).toLocaleString('id-ID')} / 
-                    Rp. ${parseInt(selectedProject.donation_target).toLocaleString('id-ID')}
-                `;
-
-                // Tampilkan pop-up
-                document.getElementById('detailProjectPopUp').classList.remove('hidden');
-            }
+            // Tampilkan pop-up
+            document.getElementById('detailProjectPopUp').classList.remove('hidden');
         }
+    }
 
 </script>
 
