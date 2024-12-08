@@ -88,16 +88,15 @@
                     </div>
                 </div>
                 <div class="flex flex-col items-start">
-                    <h1 class="text-xl font-bold text-left mb-4">
-                        Membantu Anak Anak Mendapatkan Pendidikan Yang Lebih Layak
-                    </h1>
-                    <p class="text-lg mb-4 text-left font-light">
-                        Pendidikan adalah kunci untuk mengubah hidup. Dengan mendukung kampanye ini, Donasi Anda akan
-                        digunakan untuk membangun sekolah, melatih guru, dan menyediakan fasilitas belajar yang memadai.
-                    </p>
                     <span class="bg-[#EC5A49] px-5 py-2 rounded-full">
                         Bantuan Pendidikan
                     </span>
+                    <h1 class="text-xl font-bold text-left mt-4">
+                        Membantu Anak Anak Mendapatkan Pendidikan Yang Lebih Layak
+                    </h1>
+                    <p class="text-lg mt-4 text-left font-light">
+                        Pendidikan adalah kunci untuk mengubah hidup. Dengan mendukung kampanye ini, Donasi Anda akan digunakan untuk membangun sekolah, melatih guru, dan menyediakan fasilitas belajar yang memadai.
+                    </p>
                 </div>
             </div>
             <div class="text-xl font-bold my-4 text-center mb-4">
@@ -136,10 +135,10 @@
         window.user = {}
     </script>
     <header class="flex justify-between items-center p-6 z-50">
-        <div class="text-lg font-bold -ml-4 lg:ml-16">
+        <div class="text-lg font-bold ml-4 lg:ml-16">
             <img src="../../logo.svg" />
         </div>
-        <nav class="space-x-2 lg:space-x-6 ml-4 flex flex-row ml-auto mr-auto">
+        <nav class="space-x-2 items-center justify-center w-full lg:space-x-6 -ml-48 flex flex-row ml-auto mr-auto">
             <a class="text-white hover:text-red-500 text-md lg:text-lg duration-300" href="../../">
                 Home
             </a>
@@ -152,7 +151,7 @@
             <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../../donation/list/">
                 List Donasi
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../../login/" id="login-btn">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap mr-auto" href="../../login/" id="login-btn">
                 Masuk / Daftar
             </a>
             <script>
@@ -194,7 +193,7 @@
                     </select>
                 </div>
                 <div id="add-project" class="">
-                    <button class="bg-[#EC5A49] text-white px-4 py-4 rounded-lg">Tambahkan Project </button>
+                    <button class="bg-[#EC5A49] text-white px-4 py-4 rounded-lg hover:opacity-50 active:scale-97 duration-300">Tambahkan Project <span class="text-3xl">+</span></button>
                 </div>
             </div>
             <div class="mt-8">
@@ -305,6 +304,7 @@
         })
         render(result)
     })
+
     function render(data) {
         const container = document.getElementById('project-container');
         container.innerHTML = '';
@@ -318,10 +318,16 @@
         data.forEach(project => {
             const progress = (project.donation / project.donation_target) * 100;
             const projectHTML = `
-                    <div id="card-project" class="bg-teal-900 text-white rounded-lg h-[540px] max-w-[450px]" onclick="document.getElementById('detailProjectPopUp').classList.remove('hidden')">
-                        <div class="mb-4 rounded-lg w-full h-48 overflow-hidden">
+                    <div id="card-project" 
+                        class="bg-teal-900 text-white rounded-lg h-[540px] max-w-[450px]"
+                        data-id="${project.id}"
+                        onclick="showProjectDetail(${project.id})">
+                        <div class="relative mb-4 rounded-lg w-full h-48 overflow-hidden">
                             <img alt="${project.title}" class="mb-4 rounded-lg w-full h-48 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
                             src="../../project${project.id}.webp" />
+                            <div id="add-project" class="absolute top-[10px] right-[10px]">
+                                <button class="bg-[#EC5A49] text-white px-4 py-4 rounded-lg hover:cursor-pointer hover:opacity-70 active:scale-97 duration-300">Update</button>
+                            </div>
                         </div>
                         <div class="py-6 px-9 flex flex-col h-[320px]">
                             <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">Bantuan ${project.category}</span>
@@ -352,6 +358,7 @@
         });
         container.innerHTML = html;
     }
+
     fetch('../../api/projects/')
         .then(response => response.json())
         .then(res => {
@@ -363,6 +370,30 @@
         .catch(error => {
             console.error('Error fetching project data:', error);
         });
+
+    function showProjectDetail(projectId) {
+        const selectedProject = projectData.find(project => project.id === projectId);
+
+        if (selectedProject) {
+            // Menghitung progress donasi
+            const progress = (selectedProject.donation / selectedProject.donation_target) * 100;
+
+            // Update konten pop-up dengan data proyek
+            document.querySelector('#detailProjectPopUp img').src = `../../project${selectedProject.id}.webp`;
+            document.querySelector('#detailProjectPopUp img').alt = selectedProject.title;
+            document.querySelector('#detailProjectPopUp h1.text-xl').innerText = selectedProject.title;
+            document.querySelector('#detailProjectPopUp p.text-lg').innerText = selectedProject.description;
+            document.querySelector('#detailProjectPopUp span').innerText = `Bantuan ${selectedProject.category}`;
+            document.querySelector('#detailProjectPopUp .bg-[#EC5A49]').style.width = `${progress}%`;
+            document.querySelector('#detailProjectPopUp p.text-sm').innerText = `
+                Terkumpul Rp. ${parseInt(selectedProject.donation).toLocaleString('id-ID')} / 
+                Rp. ${parseInt(selectedProject.donation_target).toLocaleString('id-ID')}
+            `;
+
+            // Tampilkan pop-up
+            document.getElementById('detailProjectPopUp').classList.remove('hidden');
+        }
+    }
 
 </script>
 
