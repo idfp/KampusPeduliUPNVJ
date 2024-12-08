@@ -5,10 +5,10 @@ header('Content-Type: application/json');
 session_start();
 
 if (
-    isset($_POST['name']) &&
-    isset($_POST['phone']) &&
-    isset($_POST['nominal']) &&
-    isset($_POST['payment'])
+    isset($_POST['title']) &&
+    isset($_POST['category']) &&
+    isset($_POST['target']) &&
+    isset($_POST['description'])
 ) {
     $title = $_POST['title'];
     $category = $_POST['category'];
@@ -18,10 +18,15 @@ if (
     $documentation2 = $_FILES['documentation2'];
     $target = $_POST['target'];
 
-    $sql = "INSERT INTO project(title, description, category, donation_target) VALUES(?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO project(title, description, category, donation_target) VALUES(?, ?, ?, ?) RETURNING *";
     $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "ssssss", $id, $name, $nominal, $payment, $msg, $status);
+    mysqli_stmt_bind_param($stmt, "ssss", $title, $description, $category, $target);
     if (mysqli_stmt_execute($stmt)) {
+        $lastid = $conn->insert_id;
+        mkdir("project-$lastid");
+        move_uploaded_file($mainImage['tmp_name'], "project-$lastid/main.jpg");
+        move_uploaded_file($documentation['tmp_name'], "project-$lastid/doc1.jpg");
+        move_uploaded_file($documentation2['tmp_name'], "project-$lastid/doc2.jpg");
         echo json_encode(["status" => "success"]);
     } else {
         echo json_encode(["status" => "failed", "error" => mysqli_stmt_error($stmt)]);
@@ -29,6 +34,7 @@ if (
 
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
+    die();
 }
 $sql = 'SELECT * FROM project';
 $result = mysqli_query($conn, $sql);

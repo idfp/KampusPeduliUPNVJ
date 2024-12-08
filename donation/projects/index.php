@@ -69,7 +69,7 @@
                 <a class="cursor-pointer bg-[#EC5A49] text-white px-8 py-3 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 mx-4"
                     onclick="document.getElementById('addProjectPopup').classList.add('hidden')"> Cancel</a>
                 <a class="bg-[#EC5A49] text-white px-8 py-3 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 mx-4"
-                    href="../../donation"> Buat</a>
+                    onclick="uploadProject()" href="#"> Buat</a>
             </div>
         </div>
     </div>
@@ -139,7 +139,7 @@
         <div class="text-lg font-bold -ml-4 lg:ml-16">
             <img src="../../logo.svg" />
         </div>
-        <nav class="space-x-2 lg:space-x-6 ml-4 flex flex-row ml-auto mr-auto">
+        <nav class="space-x-2 items-center justify-center w-full lg:space-x-6 -ml-48 flex flex-row ml-auto mr-auto">
             <a class="text-white hover:text-red-500 text-md lg:text-lg duration-300" href="../../">
                 Home
             </a>
@@ -152,7 +152,7 @@
             <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../../donation/list/">
                 List Donasi
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../../login/" id="login-btn">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap mr-auto" href="../../login/" id="login-btn">
                 Masuk / Daftar
             </a>
             <script>
@@ -217,7 +217,7 @@
             addProjectPopup.classList.add('hidden');
             console.log("closing")
         });
-        closeDetailProjectPopup.addEventListener('click', ()=>{
+        closeDetailProjectPopup.addEventListener('click', () => {
             detailProjectPopUp.classList.add('hidden');
             console.log("closing detail project")
         })
@@ -228,7 +228,18 @@
         });
 
     </script>
-
+    <script>
+        function uploadProject() {
+            const uploadImage = document.getElementById("upload-image")
+            const uploadImage2 = document.getElementById("upload-image2")
+            const uploadImage3 = document.getElementById("upload-image3")
+            const target = document.getElementById("target")
+            const title = document.getElementById("title")
+            const description = document.getElementById("description")
+            const categoryAdd = document.getElementById("categoryAdd")
+            
+        }
+    </script>
 </body>
 <script>
     let projectData = [];
