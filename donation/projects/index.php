@@ -16,6 +16,9 @@
         * {
             font-family: "Josefin Sans", sans-serif;
         }
+        *::selection{
+            background-color: #EC5A49;
+        }
     </style>
 </head>
 
@@ -95,7 +98,8 @@
                         Membantu Anak Anak Mendapatkan Pendidikan Yang Lebih Layak
                     </h1>
                     <p class="text-lg mt-4 text-left font-light">
-                        Pendidikan adalah kunci untuk mengubah hidup. Dengan mendukung kampanye ini, Donasi Anda akan digunakan untuk membangun sekolah, melatih guru, dan menyediakan fasilitas belajar yang memadai.
+                        Pendidikan adalah kunci untuk mengubah hidup. Dengan mendukung kampanye ini, Donasi Anda akan
+                        digunakan untuk membangun sekolah, melatih guru, dan menyediakan fasilitas belajar yang memadai.
                     </p>
                 </div>
             </div>
@@ -105,12 +109,12 @@
                 </h1>
                 <div class="flex flex-row w-full justify-evenly">
                     <div class="mb-4 rounded-lg w-full max-w-[350px] h-40 overflow-hidden">
-                        <img alt="${project.title}"
+                        <img id="doc1" alt="${project.title}"
                             class="mb-4 rounded-lg w-full h-40 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
                             src="../../project1.webp" />
                     </div>
                     <div class="mb-4 rounded-lg w-full max-w-[350px] h-40 overflow-hidden">
-                        <img alt="${project.title}"
+                        <img id="doc2" alt="${project.title}"
                             class="mb-4 rounded-lg w-full h-40 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
                             src="../../project1.webp" />
                     </div>
@@ -118,7 +122,7 @@
             </div>
             <div class="flex flex-col">
                 <div class="bg-[#F8F4E8] h-3 w-full rounded-full mb-4">
-                    <div class="bg-[#EC5A49] h-3 rounded-full" style="width: ${progress}%;"></div>
+                    <div id="progress" class="bg-[#EC5A49] h-3 rounded-full" style="width: ${progress}%;"></div>
                 </div>
                 <p class="text-sm mr-auto">
                     Terkumpul Rp. ${parseInt(project.donation).toLocaleString('id-ID')} / Rp.
@@ -151,7 +155,8 @@
             <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../../donation/list/">
                 List Donasi
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap mr-auto" href="../../login/" id="login-btn">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap mr-auto" href="../../login/"
+                id="login-btn">
                 Masuk / Daftar
             </a>
             <script>
@@ -193,7 +198,9 @@
                     </select>
                 </div>
                 <div id="add-project" class="">
-                    <button class="bg-[#EC5A49] text-white px-4 py-4 rounded-lg hover:opacity-50 active:scale-97 duration-300">Tambahkan Project <span class="text-3xl">+</span></button>
+                    <button
+                        class="bg-[#EC5A49] text-white px-4 py-4 rounded-lg hover:opacity-50 active:scale-97 duration-300">Tambahkan
+                        Project <span class="text-3xl">+</span></button>
                 </div>
             </div>
             <div class="mt-8">
@@ -227,8 +234,13 @@
         });
 
     </script>
-    <script>
-        function uploadProject() {
+</body>
+<script>
+    let projectData = [];
+    const search = document.getElementById("search")
+    const category = document.getElementById("category")
+    const target = document.getElementById("target")
+    function uploadProject() {
             const uploadImage = document.getElementById("upload-image")
             const uploadImage2 = document.getElementById("upload-image2")
             const uploadImage3 = document.getElementById("upload-image3")
@@ -236,15 +248,35 @@
             const title = document.getElementById("title")
             const description = document.getElementById("description")
             const categoryAdd = document.getElementById("categoryAdd")
-            
+            const formData = new FormData();
+            formData.append('mainImage', uploadImage.files[0])
+            formData.append('documentation1', uploadImage2.files[0])
+            formData.append('documentation2', uploadImage3.files[0])
+            formData.append('title', title.value)
+            formData.append('category', category.value)
+            formData.append('description', description.value)
+            formData.append('target', target.value)
+            fetch("../../api/projects/", {
+                method: "POST",
+                body: formData
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.status === "success") {
+                    const addProjectPopup = document.getElementById('addProjectPopUp');
+                    addProjectPopup.classList.add("hidden")
+                    projectData.unshift({
+                        id: projectData.length,
+                        title: title.value,
+                        description: description.value,
+                        category: category.value,
+                        donation: 0,
+                        donation_target: target.value
+                    })
+                    render(projectData)
+                }
+            })
         }
-    </script>
-</body>
-<script>
-    let projectData = [];
-    const search = document.getElementById("search")
-    const category = document.getElementById("category")
-    const target = document.getElementById("target")
     target.addEventListener("keydown", (event) => {
         const key = event.key;
         if (isNaN(parseInt(key)) && key !== "Backspace" && key !== "Delete") {
@@ -335,7 +367,7 @@
                         onclick="showProjectDetail(${project.id})">
                         <div class="relative mb-4 rounded-lg w-full h-48 overflow-hidden">
                             <img alt="${project.title}" class="mb-4 rounded-lg w-full h-48 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
-                            src="../../project${project.id}.webp" />
+                            src="../../uploads/project-${project.id}/main.jpg" />
                             <div id="add-project" class="absolute top-[10px] right-[10px]">
                                 <button class="bg-[#EC5A49] text-white px-4 py-4 rounded-lg hover:cursor-pointer hover:opacity-70 active:scale-97 duration-300">Update</button>
                             </div>
@@ -389,19 +421,17 @@
             const progress = (selectedProject.donation / selectedProject.donation_target) * 100;
             document.getElementById('detailProjectPopUp').classList.remove('hidden');
             // Update konten pop-up dengan data proyek
-            document.querySelector('#detailProjectPopUp img').src = `../../project${selectedProject.id}.webp`;
+            document.querySelector('#detailProjectPopUp img').src = `../../uploads/project-${selectedProject.id}/main.jpg`;
             document.querySelector('#detailProjectPopUp img').alt = selectedProject.title;
             document.querySelector('#detailProjectPopUp h1.text-xl').innerText = selectedProject.title;
             document.querySelector('#detailProjectPopUp p.text-lg').innerText = selectedProject.description;
             document.querySelector('#detailProjectPopUp span').innerText = `Bantuan ${selectedProject.category}`;
-            document.querySelector('#detailProjectPopUp .bg-[#EC5A49]').style.width = `${progress}%`;
-            document.querySelector('#detailProjectPopUp p.text-sm').innerText = `
-                Terkumpul Rp. ${parseInt(selectedProject.donation).toLocaleString('id-ID')} / 
-                Rp. ${parseInt(selectedProject.donation_target).toLocaleString('id-ID')}
+            document.querySelector('#progress').style.width = `${progress}%`;
+            console.log(document.getElementById('doc1'))
+            document.getElementById('doc1').src = `../../uploads/project-${selectedProject.id}/doc1.jpg`;
+            document.getElementById('doc2').src = `../../uploads/project-${selectedProject.id}/doc2.jpg`;
+            document.querySelector('#detailProjectPopUp p.text-sm').innerText = `Terkumpul Rp. ${parseInt(selectedProject.donation).toLocaleString('id-ID')} / Rp. ${parseInt(selectedProject.donation_target).toLocaleString('id-ID')}
             `;
-
-            // Tampilkan pop-up
-            
         }
     }
 
