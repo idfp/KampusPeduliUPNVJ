@@ -383,12 +383,11 @@
         });
 
     function showProjectDetail(projectId) {
-        const selectedProject = projectData.find(project => project.id === projectId);
-
+        const selectedProject = projectData.find(project => parseInt(project.id) === projectId);
         if (selectedProject) {
             // Menghitung progress donasi
             const progress = (selectedProject.donation / selectedProject.donation_target) * 100;
-
+            document.getElementById('detailProjectPopUp').classList.remove('hidden');
             // Update konten pop-up dengan data proyek
             document.querySelector('#detailProjectPopUp img').src = `../../project${selectedProject.id}.webp`;
             document.querySelector('#detailProjectPopUp img').alt = selectedProject.title;
@@ -402,7 +401,7 @@
             `;
 
             // Tampilkan pop-up
-            document.getElementById('detailProjectPopUp').classList.remove('hidden');
+            
         }
     }
 
