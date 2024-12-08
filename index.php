@@ -28,19 +28,19 @@
             <img src="logo.svg" />
         </div>
         <nav class="space-x-2 lg:space-x-6 ml-2 flex flex-row">
-            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg duration-300" href="">
                 Home
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="contact/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg duration-300" href="contact/">
                 Contact
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="about_us/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap duration-300" href="about_us/">
                 About Us
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="donation/list/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap duration-300" href="donation/list/">
                 List Donasi
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="login/" id="login-btn">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap duration-300" href="login/" id="login-btn">
                 Masuk / Daftar
             </a>
             <script>
@@ -57,7 +57,7 @@
                     })
             </script>
         </nav>
-        <a class="bg-[#EC5A49] text-white px-8 py-2 rounded-lg hover:opacity-50 active:scale-97 duration-300 hidden lg:block" href="donation">
+        <a class="bg-[#EC5A49] text-white px-8 py-2 rounded-lg hover:opacity-50 active:scale-97 duration-300 hidden lg:block" href="donation/projects">
             Donasi Sekarang
         </a>
     </header>
@@ -70,7 +70,7 @@
             </h1>
 
             <a class="bg-[#EC5A49] text-white px-6 py-3 rounded-lg mb-4 inline-flex items-center hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0"
-                href="donation/">
+                href="donation/projects">
                 Donasi Sekarang
                 <i class="fas fa-arrow-right ml-2"> </i>
             </a>
@@ -130,7 +130,7 @@
                     </p>
                 </div>
                 <div class="flex-1 flex flex-col">
-                    <a class="bg-teal-900 rounded-full px-8 py-4 ml-auto" href="donation/list/">
+                    <a class="bg-teal-900 rounded-full px-8 py-4 ml-auto hover:opacity-50 active:scale-97 duration-300" href="donation/list/">
                         Donasi Terkumpul
                         <i class="fas fa-arrow-right ml-2"> </i>
                     </a>

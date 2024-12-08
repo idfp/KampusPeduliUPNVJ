@@ -54,19 +54,19 @@ include "../connection.php";
             <img src="../logo.svg" />
         </div>
         <nav class="space-x-2 lg:space-x-6 ml-2 flex flex-row">
-            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="../">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg duration-300" href="../">
                 Home
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="../contact/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg duration-300" href="../contact/">
                 Contact
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../about_us/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap duration-300" href="../about_us/">
                 About Us
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../donation/list/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap duration-300" href="../donation/list/">
                 List Donasi
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../login/" id="login-btn">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap duration-300" href="../login/" id="login-btn">
                 Masuk / Daftar
             </a>
             <script>
@@ -83,7 +83,7 @@ include "../connection.php";
                     })
             </script>
         </nav>
-        <a class="bg-[#EC5A49] text-white px-8 py-2 rounded-lg hidden lg:block" href="../donation/">
+        <a class="bg-[#EC5A49] text-white px-8 py-2 rounded-lg hidden hover:opacity-50 active:scale-97 duration-300 lg:block" href="../donation/">
             Donasi Sekarang
         </a>
     </header>
@@ -114,8 +114,7 @@ include "../connection.php";
 
             </div>
             <span id="login-error" class="text-red-400 mb-4"></span>
-            <span class="ml-auto"><a href="/forgot" class="text-[#EC5A49]">Lupa Password</a></span>
-            <span class="ml-auto">Belum Memiliki Akun? <a href="/register" class="text-[#EC5A49]">Register</a></span>
+            <span class="ml-auto">Belum Memiliki Akun? <a href="../register" class="text-[#EC5A49] hover:opacity-50 active:scale-97 duration-300">Register</a></span>
             <button
                 class="bg-[#EC5A49] text-[#F8F4E8]-900 px-8 py-2 rounded-lg mt-4 hover:opacity-60 active:scale-[.98] duration-300"
                 onclick="login()">
@@ -129,7 +128,7 @@ include "../connection.php";
             </div>
             <div class="flex flex-col items-center justify-center">
                 <button
-                    class="bg-white rounded-lg flex flex-row px-8 py-2 justify-center items-center text-black w-full">
+                    class="bg-white rounded-lg flex flex-row px-8 py-2 justify-center items-center text-black w-full hover:opacity-50 active:scale-97 duration-300">
                     <svg class="w-5 h-5 mr-2" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"
                         xmlns:xlink="http://www.w3.org/1999/xlink" style="display: block;">
                         <path fill="#EA4335"
@@ -158,7 +157,7 @@ include "../connection.php";
             </p>
         </div>
         <div
-            class="bg-[url('/login.webp')] bg-cover rounded-tl-3xl h-full md:min-w-[600px] min-w-screen w-full max-w-screen brightness-[40%]">
+            class="bg-[url('../login.webp')] bg-cover rounded-tl-3xl h-full md:min-w-[600px] min-w-screen w-full max-w-screen brightness-[40%]">
         </div>
     </div>
 </body>

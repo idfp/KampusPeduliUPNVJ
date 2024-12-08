@@ -22,22 +22,22 @@
 <body class="bg-teal-900 text-white">
     <header class="flex justify-between items-center p-6">
         <div class="text-lg font-bold lg:ml-16">
-            <img src="/logo.svg" />
+            <img src="../logo.svg" />
         </div>
         <nav class="space-x-2 lg:space-x-6 ml-2 flex flex-row">
-            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="../">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg duration-300" href="../">
                 Home
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg" href="../contact/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg duration-300" href="../contact/">
                 Contact
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../about_us/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap duration-300" href="../about_us/">
                 About Us
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../donation/list/">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap duration-300" href="../donation/list/">
                 List Donasi
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../login/" id="login-btn">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap duration-300" href="../login/" id="login-btn">
                 Masuk / Daftar
             </a>
             <script>
@@ -54,11 +54,11 @@
                     })
             </script>
         </nav>
-        <a class="bg-[#EC5A49] text-white px-8 py-2 rounded-lg hidden lg:block" href="../donation/">
+        <a class="bg-[#EC5A49] text-white px-8 py-2 rounded-lg hidden hover:opacity-50 active:scale-97 duration-300 lg:block" href="../donation/">
             Donasi Sekarang
         </a>
     </header>
-    <div class="flex flex-row w-full h-[91vh] justify-center items-center flex-wrap lg:flex-nowrap">
+    <div class="flex flex-row w-full h-[100vh] justify-center items-start flex-wrap lg:flex-nowrap">
         <div class="flex flex-col mx-8 lg:mx-6">
             <h1 class="font-normal text-4xl mb-8">
                 Kelompok 5
@@ -122,7 +122,7 @@
             </section>
         </div>
         <div
-            class="bg-[url('/about_us.webp')] bg-cover rounded-tl-3xl h-full md:min-w-[600px] min-w-screen w-full max-w-screen brightness-[40%]">
+            class="bg-[url('../about_us.webp')] bg-cover rounded-tl-3xl h-full md:min-w-[600px] min-w-screen w-full max-w-screen brightness-[40%]">
         </div>
     </div>
 </body>
