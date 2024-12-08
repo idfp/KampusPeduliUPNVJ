@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     $target = $data['target'] ?? null;
     $description = $data['description'] ?? null;
     $id = $data['id'] ?? null;
-
+    
     $sql = "UPDATE project SET title = ?, category = ?, donation_target = ?, description = ? WHERE id = ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "sssss", $title, $category, $target, $description, $id);
