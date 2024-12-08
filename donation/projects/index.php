@@ -16,6 +16,9 @@
         * {
             font-family: "Josefin Sans", sans-serif;
         }
+        *::selection{
+            background-color: #EC5A49;
+        }
     </style>
 </head>
 
@@ -75,16 +78,16 @@
     </div>
     <div id="detailProjectPopUp"
         class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden z-50">
-        <div class="bg-teal-900 rounded-lg p-6 max-w-[900px] w-full text-center z-50 flex flex-col">
-            <button id="closeDetailProjectPopup" class="text-[#EC5A49] px-4 py-2 rounded-lg text-2xl ml-auto">
+        <div class="bg-teal-900 rounded-lg p-10 max-w-[900px] w-full text-center z-50 flex flex-col">
+            <button id="closeDetailProjectPopup" class="text-[#EC5A49] px-[10px] py-[2px] rounded-lg text-2xl ml-auto hover:bg-[#EC5A49] hover:px-[10px] py-[2px] hover:rounded-full hover:text-black duration-300">
                 x
             </button>
-            <div class="flex flex-col gap-8">
+            <div class="flex flex-col gap-5">
                 <div class="flex flex-col justify-center items-center text-left">
                     <span class="bg-[#EC5A49] px-5 py-2 rounded-full">
                         Bantuan Pendidikan
                     </span>
-                    <h1 class="text-xl font-bold text-left mt-4">
+                    <h1 class="text-2xl font-bold text-left mt-4">
                         Membantu Anak Anak Mendapatkan Pendidikan Yang Lebih Layak
                     </h1>
                 </div>
@@ -94,23 +97,24 @@
                             class="mb-4 rounded-lg w-full h-60 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
                             src="../../project1.webp" />
                     </div>
-                    <p class="text-lg mt-4 text-left font-light">
-                        Pendidikan adalah kunci untuk mengubah hidup. Dengan mendukung kampanye ini, Donasi Anda akan digunakan untuk membangun sekolah, melatih guru, dan menyediakan fasilitas belajar yang memadai.
+                    <p class="text-lg text-left font-light">
+                        Pendidikan adalah kunci untuk mengubah hidup. Dengan mendukung kampanye ini, Donasi Anda akan
+                        digunakan untuk membangun sekolah, melatih guru, dan menyediakan fasilitas belajar yang memadai.
                     </p>
                 </div>
             </div>
-            <div class="text-xl font-bold my-4 text-center mb-4">
-                <h1 class="mb-4">
+            <div class="text-xl font-bold my-8 text-center">
+                <h1 class="mb-4 text-2xl">
                     Dokumentasi Proyek
                 </h1>
                 <div class="flex flex-row w-full justify-evenly">
                     <div class="mb-4 rounded-lg w-full max-w-[350px] h-40 overflow-hidden">
-                        <img alt="${project.title}"
+                        <img id="doc1" alt="${project.title}"
                             class="mb-4 rounded-lg w-full h-40 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
                             src="../../project1.webp" />
                     </div>
                     <div class="mb-4 rounded-lg w-full max-w-[350px] h-40 overflow-hidden">
-                        <img alt="${project.title}"
+                        <img id="doc2" alt="${project.title}"
                             class="mb-4 rounded-lg w-full h-40 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
                             src="../../project1.webp" />
                     </div>
@@ -118,15 +122,15 @@
             </div>
             <div class="flex flex-col">
                 <div class="bg-[#F8F4E8] h-3 w-full rounded-full mb-4">
-                    <div class="bg-[#EC5A49] h-3 rounded-full" style="width: ${progress}%;"></div>
+                    <div id="progress" class="bg-[#EC5A49] h-3 rounded-full" style="width: ${progress}%;"></div>
                 </div>
-                <p class="text-sm mr-auto">
+                <p class="text-xl text-center">
                     Terkumpul Rp. ${parseInt(project.donation).toLocaleString('id-ID')} / Rp.
                     ${parseInt(project.donation_target).toLocaleString('id-ID')}
                 </p>
             </div>
-            <div class="text-center ml-auto mt-8">
-                <a class="bg-[#EC5A49] text-white px-24 py-6 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0"
+            <div class="text-center text-center mt-8">
+                <a class="bg-[#EC5A49] text-2xl text-white px-24 py-6 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0"
                     href="../../donation"> Donasi</a>
             </div>
         </div>
@@ -151,7 +155,8 @@
             <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../../donation/list/">
                 List Donasi
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap mr-auto" href="../../login/" id="login-btn">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap mr-auto" href="../../login/"
+                id="login-btn">
                 Masuk / Daftar
             </a>
             <script>
@@ -193,7 +198,9 @@
                     </select>
                 </div>
                 <div id="add-project" class="">
-                    <button class="bg-[#EC5A49] text-white px-4 py-4 rounded-lg hover:opacity-50 active:scale-97 duration-300">Tambahkan Project <span class="text-3xl">+</span></button>
+                    <button
+                        class="bg-[#EC5A49] text-white px-4 py-4 rounded-lg hover:opacity-50 active:scale-97 duration-300">Tambahkan
+                        Project <span class="text-3xl">+</span></button>
                 </div>
             </div>
             <div class="mt-8">
@@ -227,8 +234,13 @@
         });
 
     </script>
-    <script>
-        function uploadProject() {
+</body>
+<script>
+    let projectData = [];
+    const search = document.getElementById("search")
+    const category = document.getElementById("category")
+    const target = document.getElementById("target")
+    function uploadProject() {
             const uploadImage = document.getElementById("upload-image")
             const uploadImage2 = document.getElementById("upload-image2")
             const uploadImage3 = document.getElementById("upload-image3")
@@ -236,139 +248,199 @@
             const title = document.getElementById("title")
             const description = document.getElementById("description")
             const categoryAdd = document.getElementById("categoryAdd")
-            
+            const formData = new FormData();
+            formData.append('mainImage', uploadImage.files[0])
+            formData.append('documentation1', uploadImage2.files[0])
+            formData.append('documentation2', uploadImage3.files[0])
+            formData.append('title', title.value)
+            formData.append('category', category.value)
+            formData.append('description', description.value)
+            formData.append('target', target.value)
+            fetch("../../api/projects/", {
+                method: "POST",
+                body: formData
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.status === "success") {
+                    const addProjectPopup = document.getElementById('addProjectPopUp');
+                    addProjectPopup.classList.add("hidden")
+                    projectData.unshift({
+                        id: projectData.length,
+                        title: title.value,
+                        description: description.value,
+                        category: category.value,
+                        donation: 0,
+                        donation_target: target.value
+                    })
+                    render(projectData)
+                }
+            })
         }
-    </script>
-    <script>
-        let projectData = [];
-        const search = document.getElementById("search")
-        const category = document.getElementById("category")
-        const target = document.getElementById("target")
-        target.addEventListener("keydown", (event) => {
-            const key = event.key;
-            if (isNaN(parseInt(key)) && key !== "Backspace" && key !== "Delete") {
-                event.preventDefault();
-            }
-        })
-        const uploadImage = document.getElementById("upload-image")
-        const uploadImage2 = document.getElementById("upload-image2")
-        const uploadImage3 = document.getElementById("upload-image3")
-        let activeImage;
-        uploadImage.addEventListener("change", (e) => {
-            const files = e.target.files;
-            if (files.length > 0) {
-                console.log('Selected file:');
-                console.log(files[0]);
-                const blobUrl = URL.createObjectURL(files[0]);
-                document.getElementById("add-image-jpg").src = blobUrl
-                activeImage = files[0]
-            }
-        })
-        uploadImage2.addEventListener("change", (e) => {
-            const files = e.target.files;
-            if (files.length > 0) {
-                console.log('Selected file:');
-                console.log(files[0]);
-                const blobUrl = URL.createObjectURL(files[0]);
-                document.getElementById("add-image-jpg2").src = blobUrl
-                activeImage = files[0]
-            }
-        })
-        uploadImage3.addEventListener("change", (e) => {
-            const files = e.target.files;
-            if (files.length > 0) {
-                console.log('Selected file:');
-                console.log(files[0]);
-                const blobUrl = URL.createObjectURL(files[0]);
-                document.getElementById("add-image-jpg3").src = blobUrl
-                activeImage = files[0]
-            }
-        })
 
-        search.addEventListener("input", (e) => {
-            const searchTerm = e.target.value
-            let result = []
-            projectData.forEach(d => {
-                if (d.category === category.value || category.value === "Semua") {
-                    if (d.title.toLowerCase().includes(searchTerm.toLowerCase())) {
-                        result.push(d)
-                    } else if (d.description.toLowerCase().includes(searchTerm.toLowerCase())) {
-                        result.push(d)
-                    }
+    target.addEventListener("keydown", (event) => {
+        const key = event.key;
+        if (isNaN(parseInt(key)) && key !== "Backspace" && key !== "Delete") {
+            event.preventDefault();
+        }
+    })
+
+    const uploadImage = document.getElementById("upload-image")
+    const uploadImage2 = document.getElementById("upload-image2")
+    const uploadImage3 = document.getElementById("upload-image3")
+    let activeImage;
+    uploadImage.addEventListener("change", (e) => {
+        const files = e.target.files;
+        if (files.length > 0) {
+            console.log('Selected file:');
+            console.log(files[0]);
+            const blobUrl = URL.createObjectURL(files[0]);
+            document.getElementById("add-image-jpg").src = blobUrl
+            activeImage = files[0]
+        }
+    })
+
+    uploadImage2.addEventListener("change", (e) => {
+        const files = e.target.files;
+        if (files.length > 0) {
+            console.log('Selected file:');
+            console.log(files[0]);
+            const blobUrl = URL.createObjectURL(files[0]);
+            document.getElementById("add-image-jpg2").src = blobUrl
+            activeImage = files[0]
+        }
+    })
+    uploadImage3.addEventListener("change", (e) => {
+        const files = e.target.files;
+        if (files.length > 0) {
+            console.log('Selected file:');
+            console.log(files[0]);
+            const blobUrl = URL.createObjectURL(files[0]);
+            document.getElementById("add-image-jpg3").src = blobUrl
+            activeImage = files[0]
+        }
+    })
+
+    search.addEventListener("input", (e) => {
+        const searchTerm = e.target.value
+        let result = []
+        projectData.forEach(d => {
+            if (d.category === category.value || category.value === "Semua") {
+                if (d.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    result.push(d)
+                } else if (d.description.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    result.push(d)
                 }
-            })
-            render(result)
-        })
-        category.addEventListener("change", (e) => {
-            const searchTerm = search.value
-            let result = []
-            projectData.forEach(d => {
-                if (d.category === e.target.value || category.value === "Semua") {
-
-                    if (d.title.toLowerCase().includes(searchTerm.toLowerCase())) {
-                        result.push(d)
-                    } else if (d.description.toLowerCase().includes(searchTerm.toLowerCase())) {
-                        result.push(d)
-                    }
-                }
-            })
-            render(result)
-        })
-
-        function render(data) {
-            const container = document.getElementById('project-container');
-            container.innerHTML = '';
-            if (data.length == 0) {
-                container.innerHTML = `
-                <h1 class="text-xl my-8">Project tidak ditemukan</h1>
-                `;
-                return
             }
-            let html = ``
-            data.forEach(project => {
-                const progress = (project.donation / project.donation_target) * 100;
-                const projectHTML = `
-                        <div id="card-project" 
-                            class="bg-teal-900 text-white rounded-lg h-[540px] max-w-[450px]"
-                            data-id="${project.id}"
-                            onclick="showProjectDetail(${project.id})">
-                            <div class="relative mb-4 rounded-lg w-full h-48 overflow-hidden">
-                                <img alt="${project.title}" class="mb-4 rounded-lg w-full h-48 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
-                                src="../../project${project.id}.webp" />
-                                <div id="add-project" class="absolute top-[10px] right-[10px]">
-                                    <button class="bg-[#EC5A49] text-white px-4 py-4 rounded-lg hover:cursor-pointer hover:opacity-70 active:scale-97 duration-300">Update</button>
+        })
+        render(result)
+    })
+        
+    category.addEventListener("change", (e) => {
+        const searchTerm = search.value
+        let result = []
+        projectData.forEach(d => {
+            if (d.category === e.target.value || category.value === "Semua") {
+
+                if (d.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    result.push(d)
+                } else if (d.description.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    result.push(d)
+                }
+            }
+        })
+        render(result)
+    })
+
+    function render(data) {
+    const container = document.getElementById('project-container');
+    container.innerHTML = '';
+    if (data.length == 0) {
+        container.innerHTML = `
+        <h1 class="text-xl my-8">Project tidak ditemukan</h1>
+        `;
+        return
+    }
+
+    let html = ``
+    data.forEach(project => {
+        const progress = (project.donation / project.donation_target) * 100;
+        const projectHTML = `
+            <div id="card-project" 
+                class="bg-teal-900 text-white rounded-lg h-[540px] max-w-[450px]"
+                data-id="${project.id}"
+                onclick="showProjectDetail(${project.id})">
+                <div class="relative mb-4 rounded-lg w-full h-48 overflow-hidden">
+                    <img alt="${project.title}" class="mb-4 rounded-lg w-full h-48 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
+                    src="../../uploads/project-${project.id}/main.jpg" />
+                    <div id="add-project" class="absolute top-[10px] right-[10px]">
+                        <button class="bg-[#EC5A49] text-white px-4 py-4 rounded-lg hover:cursor-pointer hover:opacity-70 active:scale-97 duration-300">Update</button>
+                        </div>
+                    </div>
+                    <div class="py-6 px-9 flex flex-col h-[320px]">
+                        <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">Bantuan ${project.category}</span>
+                        <h3 class="text-xl font-bold my-2 text-left hover:text-slate-400 hover:cursor-pointer active:cursor-pointer duration-300">
+                            ${project.title}
+                        </h3>
+                        <p class="text-lg mb-4 text-left font-light text-ellipsis line-clamp-3">
+                            ${project.description}
+                        </p>
+                        <div class="flex flex-row mt-auto">
+                            <div class="flex flex-col">
+                                <div class="bg-[#F8F4E8] h-3 w-full rounded-full mb-4">
+                                    <div class="bg-[#EC5A49] h-3 rounded-full" style="width: ${progress}%;"></div>
                                 </div>
-                            </div>
-                            <div class="py-6 px-9 flex flex-col h-[320px]">
-                                <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">Bantuan ${project.category}</span>
-                                <h3 class="text-xl font-bold my-2 text-left hover:text-slate-400 hover:cursor-pointer active:cursor-pointer duration-300">
-                                    ${project.title}
-                                </h3>
-                                <p class="text-lg mb-4 text-left font-light text-ellipsis line-clamp-3">
-                                    ${project.description}
+                                <p class="text-sm mr-auto">
+                                    Terkumpul Rp. ${parseInt(project.donation).toLocaleString('id-ID')} / Rp. ${parseInt(project.donation_target).toLocaleString('id-ID')}
                                 </p>
-                                <div class="flex flex-row mt-auto">
-                                    <div class="flex flex-col">
-                                        <div class="bg-[#F8F4E8] h-3 w-full rounded-full mb-4">
-                                            <div class="bg-[#EC5A49] h-3 rounded-full" style="width: ${progress}%;"></div>
-                                        </div>
-                                        <p class="text-sm mr-auto">
-                                            Terkumpul Rp. ${parseInt(project.donation).toLocaleString('id-ID')} / Rp. ${parseInt(project.donation_target).toLocaleString('id-ID')}
-                                        </p>
-                                    </div>
-                                    <div class="flex justify-center items-center ml-auto">
-                                        <a class="bg-[#EC5A49] text-white px-5 py-3 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0" 
-                                        href="../../donation"> Donasi</a>
-                                    </div>
-                                </div>
                             </div>
-                        </div>`
-                    ;
-                html = html + projectHTML
-            });
-            container.innerHTML = html;
-        }
+                            <div class="flex justify-center items-center ml-auto">
+                                <a class="bg-[#EC5A49] text-white px-5 py-3 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0" 
+                                href="../../donation"> Donasi</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`
+            ;
+            html = html + projectHTML
+        });
+        container.innerHTML = html;
+    }
 
+    fetch('../../api/projects/')
+        .then(response => response.json())
+        .then(res => {
+            const data = res.data
+            projectData = data
+            activeProjects = data
+            render(data)
+        })
+        .catch(error => {
+            console.error('Error fetching project data:', error);
+        });
+
+    function showProjectDetail(projectId) {
+        const selectedProject = projectData.find(project => parseInt(project.id) === projectId);
+        if (selectedProject) {
+            // Menghitung progress donasi
+            const progress = (selectedProject.donation / selectedProject.donation_target) * 100;
+            document.getElementById('detailProjectPopUp').classList.remove('hidden');
+            // Update konten pop-up dengan data proyek
+            document.querySelector('#detailProjectPopUp img').src = `../../uploads/project-${selectedProject.id}/main.jpg`;
+            document.querySelector('#detailProjectPopUp img').alt = selectedProject.title;
+            document.querySelector('#detailProjectPopUp h1.text-2xl').innerText = selectedProject.title;
+            document.querySelector('#detailProjectPopUp p.text-lg').innerText = selectedProject.description;
+            document.querySelector('#detailProjectPopUp span').innerText = `Bantuan ${selectedProject.category}`;
+            document.querySelector('#progress').style.width = `${progress}%`;
+            console.log(document.getElementById('doc1'))
+            document.getElementById('doc1').src = `../../uploads/project-${selectedProject.id}/doc1.jpg`;
+            document.getElementById('doc2').src = `../../uploads/project-${selectedProject.id}/doc2.jpg`;
+            document.querySelector('#detailProjectPopUp p.text-xl').innerText = `Terkumpul Rp. ${parseInt(selectedProject.donation).toLocaleString('id-ID')} / Rp. ${parseInt(selectedProject.donation_target).toLocaleString('id-ID')}
+            `;
+        }
+    }
+    
         fetch('../../api/projects/')
             .then(response => response.json())
             .then(res => {
@@ -380,26 +452,6 @@
             .catch(error => {
                 console.error('Error fetching project data:', error);
             });
-
-        function showProjectDetail(projectId) {
-            const selectedProject = projectData.find(project => parseInt(project.id) === projectId);
-            if (selectedProject) {
-                // Menghitung progress donasi
-                const progress = (selectedProject.donation / selectedProject.donation_target) * 100;
-                document.getElementById('detailProjectPopUp').classList.remove('hidden');
-                // Update konten pop-up dengan data proyek
-                document.querySelector('#detailProjectPopUp img').src = `../../project${selectedProject.id}.webp`;
-                document.querySelector('#detailProjectPopUp img').alt = selectedProject.title;
-                document.querySelector('#detailProjectPopUp h1.text-xl').innerText = selectedProject.title;
-                document.querySelector('#detailProjectPopUp p.text-lg').innerText = selectedProject.description;
-                document.querySelector('#detailProjectPopUp span').innerText = `Bantuan ${selectedProject.category}`;
-                document.querySelector('#detailProjectPopUp .bg-[#EC5A49]').style.width = `${progress}%`;
-                document.querySelector('#detailProjectPopUp p.text-sm').innerText = `
-                    Terkumpul Rp. ${parseInt(selectedProject.donation).toLocaleString('id-ID')} / 
-                    Rp. ${parseInt(selectedProject.donation_target).toLocaleString('id-ID')}
-                `;
-            }
-        }
 
     </script>
 </body>
