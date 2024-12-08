@@ -181,7 +181,6 @@
 <script>
     const projectContainer = document.getElementById("project-container");
     
-
     fetch(window.location.href.replace("index.php", "") + '/api/projects/')
         .then(response => response.json())
         .then(res => {
