@@ -77,62 +77,63 @@
             </div>
         </div>
     </div>
-    <div id="detailProjectPopUp"
-        class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden z-50">
-        <div class="bg-teal-900 rounded-lg p-6 max-w-[900px] w-full text-center z-50 flex flex-col">
-            <button id="closeDetailProjectPopup" class="text-[#EC5A49] px-4 py-2 rounded-lg text-2xl ml-auto">
-                x
-            </button>
-            <div class="flex flex-row gap-12">
-                <div class="w-full max-w-[500px]">
-                    <div class="mb-4 rounded-lg w-full h-60 overflow-hidden">
-                        <img alt="${project.title}"
-                            class="mb-4 rounded-lg w-full h-60 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
-                            src="../../project1.webp" />
+        <div id="detailProjectPopUp"
+            class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden z-50">
+            <div class="bg-teal-900 rounded-lg p-10 max-w-[900px] w-full text-center z-50 flex flex-col">
+                <button id="closeDetailProjectPopup" class="text-[#EC5A49] px-[10px] py-[2px] rounded-lg text-2xl ml-auto hover:bg-[#EC5A49] hover:px-[10px] py-[2px] hover:rounded-full hover:text-black duration-300">
+                    x
+                </button>
+                <div class="flex flex-col gap-5">
+                    <div class="flex flex-col justify-center items-center text-left">
+                        <span class="bg-[#EC5A49] px-5 py-2 rounded-full">
+                            Bantuan Pendidikan
+                        </span>
+                        <h1 class="text-2xl font-bold text-left mt-4">
+                            Membantu Anak Anak Mendapatkan Pendidikan Yang Lebih Layak
+                        </h1>
+                    </div>
+                    <div class="basis-1/2">
+                        <div class="float-left mr-4 rounded-lg w-full max-w-[400px] h-60 overflow-hidden">
+                            <img alt="${project.title}"
+                                class="mb-4 rounded-lg w-full h-60 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
+                                src="../../project1.webp" />
+                        </div>
+                        <p class="text-lg text-left font-light">
+                            Pendidikan adalah kunci untuk mengubah hidup. Dengan mendukung kampanye ini, Donasi Anda akan
+                            digunakan untuk membangun sekolah, melatih guru, dan menyediakan fasilitas belajar yang memadai.
+                        </p>
                     </div>
                 </div>
-                <div class="flex flex-col items-start">
-                    <span class="bg-[#EC5A49] px-5 py-2 rounded-full">
-                        Bantuan Pendidikan
-                    </span>
-                    <h1 class="text-xl font-bold text-left mt-4">
-                        Membantu Anak Anak Mendapatkan Pendidikan Yang Lebih Layak
+                <div class="text-xl font-bold my-8 text-center">
+                    <h1 class="mb-4 text-2xl">
+                        Dokumentasi Proyek
                     </h1>
-                    <p class="text-lg mt-4 text-left font-light">
-                        Pendidikan adalah kunci untuk mengubah hidup. Dengan mendukung kampanye ini, Donasi Anda akan
-                        digunakan untuk membangun sekolah, melatih guru, dan menyediakan fasilitas belajar yang memadai.
+                    <div class="flex flex-row w-full justify-evenly">
+                        <div class="mb-4 rounded-lg w-full max-w-[350px] h-40 overflow-hidden">
+                            <img id="doc1" alt="${project.title}"
+                                class="mb-4 rounded-lg w-full h-40 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
+                                src="../../project1.webp" />
+                        </div>
+                        <div class="mb-4 rounded-lg w-full max-w-[350px] h-40 overflow-hidden">
+                            <img id="doc2" alt="${project.title}"
+                                class="mb-4 rounded-lg w-full h-40 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
+                                src="../../project1.webp" />
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <div class="bg-[#F8F4E8] h-3 w-full rounded-full mb-4">
+                        <div id="progress" class="bg-[#EC5A49] h-3 rounded-full" style="width: ${progress}%;"></div>
+                    </div>
+                    <p class="text-xl text-center">
+                        Terkumpul Rp. ${parseInt(project.donation).toLocaleString('id-ID')} / Rp.
+                        ${parseInt(project.donation_target).toLocaleString('id-ID')}
                     </p>
                 </div>
-            </div>
-            <div class="text-xl font-bold my-4 text-center mb-4">
-                <h1 class="mb-4">
-                    Dokumentasi Proyek
-                </h1>
-                <div class="flex flex-row w-full justify-evenly">
-                    <div class="mb-4 rounded-lg w-full max-w-[350px] h-40 overflow-hidden">
-                        <img id="doc1" alt="${project.title}"
-                            class="mb-4 rounded-lg w-full h-40 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
-                            src="../../project1.webp" />
-                    </div>
-                    <div class="mb-4 rounded-lg w-full max-w-[350px] h-40 overflow-hidden">
-                        <img id="doc2" alt="${project.title}"
-                            class="mb-4 rounded-lg w-full h-40 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
-                            src="../../project1.webp" />
-                    </div>
+                <div class="text-center text-center mt-8">
+                    <a class="bg-[#EC5A49] text-2xl text-white px-24 py-6 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0"
+                        href="../../donation"> Donasi</a>
                 </div>
-            </div>
-            <div class="flex flex-col">
-                <div class="bg-[#F8F4E8] h-3 w-full rounded-full mb-4">
-                    <div id="progress" class="bg-[#EC5A49] h-3 rounded-full" style="width: ${progress}%;"></div>
-                </div>
-                <p class="text-sm mr-auto">
-                    Terkumpul Rp. ${parseInt(project.donation).toLocaleString('id-ID')} / Rp.
-                    ${parseInt(project.donation_target).toLocaleString('id-ID')}
-                </p>
-            </div>
-            <div class="text-center ml-auto mt-8">
-                <a class="bg-[#EC5A49] text-white px-24 py-6 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0"
-                    href="../../donation"> Donasi</a>
             </div>
         </div>
     </div>
@@ -261,11 +262,13 @@
         const closeUpdateProjectPopup = document.getElementById('closeUpdateProjectPopup')
         showPopupButton.addEventListener("click", (e) => {
             addProjectPopup.classList.remove("hidden")
-        })
+        });
+
         closeAddProjectPopup.addEventListener('click', function () {
             addProjectPopup.classList.add('hidden');
             console.log("closing")
         });
+
         closeDetailProjectPopup.addEventListener('click', () => {
             detailProjectPopUp.classList.add('hidden');
             console.log("closing detail project")
@@ -284,9 +287,10 @@
 </body>
 <script>
     let projectData = [];
-    const search = document.getElementById("search")
-    const category = document.getElementById("category")
-    const target = document.getElementById("target")
+    const search = document.getElementById("search");
+    const category = document.getElementById("category");
+    const target = document.getElementById("target");
+
     function uploadProject() {
         const uploadImage = document.getElementById("upload-image")
         const uploadImage2 = document.getElementById("upload-image2")
@@ -330,10 +334,12 @@
             event.preventDefault();
         }
     })
-    const uploadImage = document.getElementById("upload-image")
-    const uploadImage2 = document.getElementById("upload-image2")
-    const uploadImage3 = document.getElementById("upload-image3")
+
+    const uploadImage = document.getElementById("upload-image");
+    const uploadImage2 = document.getElementById("upload-image2");
+    const uploadImage3 = document.getElementById("upload-image3");
     let activeImage;
+
     uploadImage.addEventListener("change", (e) => {
         const files = e.target.files;
         if (files.length > 0) {
@@ -343,7 +349,8 @@
             document.getElementById("add-image-jpg").src = blobUrl
             activeImage = files[0]
         }
-    })
+    });
+
     uploadImage2.addEventListener("change", (e) => {
         const files = e.target.files;
         if (files.length > 0) {
@@ -353,7 +360,8 @@
             document.getElementById("add-image-jpg2").src = blobUrl
             activeImage = files[0]
         }
-    })
+    });
+
     uploadImage3.addEventListener("change", (e) => {
         const files = e.target.files;
         if (files.length > 0) {
@@ -363,7 +371,7 @@
             document.getElementById("add-image-jpg3").src = blobUrl
             activeImage = files[0]
         }
-    })
+    });
 
     search.addEventListener("input", (e) => {
         const searchTerm = e.target.value
@@ -378,7 +386,8 @@
             }
         })
         render(result)
-    })
+    });
+        
     category.addEventListener("change", (e) => {
         const searchTerm = search.value
         let result = []
@@ -393,7 +402,7 @@
             }
         })
         render(result)
-    })
+    });
 
     function render(data) {
         const container = document.getElementById('project-container');
@@ -404,12 +413,15 @@
             `;
             return
         }
-        let html = ``
+
+        let html = ``;
+        
         data.forEach(project => {
             const progress = (project.donation / project.donation_target) * 100;
             const projectHTML = `
-                    <div id="card-project" 
-                        class="bg-teal-900 text-white rounded-lg h-[540px] max-w-[450px]"
+                <div id="card-project" 
+                    class="bg-teal-900 text-white rounded-lg h-[540px] max-w-[450px]">
+                    <div class="relative mb-4 rounded-lg w-full h-48 overflow-hidden"
                         data-id="${project.id}"
                         onclick="showProjectDetail(${project.id})">
                         <div class="relative mb-4 rounded-lg w-full h-48 overflow-hidden">
@@ -421,10 +433,14 @@
                         </div>
                         <div class="py-6 px-9 flex flex-col h-[320px]">
                             <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">Bantuan ${project.category}</span>
-                            <h3 class="text-xl font-bold my-2 text-left hover:text-slate-400 hover:cursor-pointer active:cursor-pointer duration-300">
+                            <h3 class="text-xl font-bold my-2 text-left hover:text-slate-400 hover:cursor-pointer active:cursor-pointer duration-300"
+                                data-id="${project.id}"
+                                onclick="showProjectDetail(${project.id})">
                                 ${project.title}
                             </h3>
-                            <p class="text-lg mb-4 text-left font-light text-ellipsis line-clamp-3">
+                            <p class="text-lg mb-4 text-left font-light text-ellipsis line-clamp-3"
+                                data-id="${project.id}"
+                                onclick="showProjectDetail(${project.id})">
                                 ${project.description}
                             </p>
                             <div class="flex flex-row mt-auto">
@@ -442,9 +458,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>`
-                ;
-            html = html + projectHTML
+                    </div>
+                </div>`;
+            html = html + projectHTML;
         });
         container.innerHTML = html;
     }
@@ -512,18 +528,31 @@
             // Update konten pop-up dengan data proyek
             document.querySelector('#detailProjectPopUp img').src = `../../uploads/project-${selectedProject.id}/main.jpg`;
             document.querySelector('#detailProjectPopUp img').alt = selectedProject.title;
-            document.querySelector('#detailProjectPopUp h1.text-xl').innerText = selectedProject.title;
+            document.querySelector('#detailProjectPopUp h1.text-2xl').innerText = selectedProject.title;
             document.querySelector('#detailProjectPopUp p.text-lg').innerText = selectedProject.description;
             document.querySelector('#detailProjectPopUp span').innerText = `Bantuan ${selectedProject.category}`;
             document.querySelector('#progress').style.width = `${progress}%`;
             console.log(document.getElementById('doc1'))
             document.getElementById('doc1').src = `../../uploads/project-${selectedProject.id}/doc1.jpg`;
             document.getElementById('doc2').src = `../../uploads/project-${selectedProject.id}/doc2.jpg`;
-            document.querySelector('#detailProjectPopUp p.text-sm').innerText = `Terkumpul Rp. ${parseInt(selectedProject.donation).toLocaleString('id-ID')} / Rp. ${parseInt(selectedProject.donation_target).toLocaleString('id-ID')}
+            document.querySelector('#detailProjectPopUp p.text-xl').innerText = `Terkumpul Rp. ${parseInt(selectedProject.donation).toLocaleString('id-ID')} / Rp. ${parseInt(selectedProject.donation_target).toLocaleString('id-ID')}
             `;
         }
     }
+    
+        fetch('../../api/projects/')
+            .then(response => response.json())
+            .then(res => {
+                const data = res.data
+                projectData = data
+                activeProjects = data
+                render(data)
+            })
+            .catch(error => {
+                console.error('Error fetching project data:', error);
+            });
 
-</script>
+    </script>
+</body>
 
 </html>
