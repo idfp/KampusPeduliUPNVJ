@@ -114,11 +114,7 @@ include "../connection.php";
 
             </div>
             <span id="login-error" class="text-red-400 mb-4"></span>
-<<<<<<< HEAD
-            <span class="ml-auto">Belum Memiliki Akun? <a href="../register" class="text-[#EC5A49]">Register</a></span>
-=======
             <span class="ml-auto">Belum Memiliki Akun? <a href="../register" class="text-[#EC5A49] hover:opacity-50 active:scale-97 duration-300">Register</a></span>
->>>>>>> 047147681a0da3001f463c7de4ea627dcdea4730
             <button
                 class="bg-[#EC5A49] text-[#F8F4E8]-900 px-8 py-2 rounded-lg mt-4 hover:opacity-60 active:scale-[.98] duration-300"
                 onclick="login()">

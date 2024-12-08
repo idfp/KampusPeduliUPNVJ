@@ -277,7 +277,7 @@
                         data-id="${project.id}"
                         onclick="showProjectDetail(${project.id})">
                         <img alt="${project.title}" class="mb-4 rounded-lg w-full h-48 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
-                            src="project${project.id}.webp" />
+                            src="uploads/project-${project.id}/main.jpg" />
                     </div>
                     <div class="py-5 px-8 flex flex-col h-[320px]">
                         <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">Bantuan ${project.category}</span>

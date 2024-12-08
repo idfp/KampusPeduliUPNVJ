@@ -46,10 +46,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     $category = $data['category'] ?? null;
     $target = $data['target'] ?? null;
     $description = $data['description'] ?? null;
+    $id = $data['id'] ?? null;
 
-    $sql = "UPDATE project SET title = ?, category = ?, donation_target = ?, description = ?";
+    $sql = "UPDATE project SET title = ?, category = ?, donation_target = ?, description = ? WHERE id = ?";
     $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "ssss", $title, $category, $target, $description);
+    mysqli_stmt_bind_param($stmt, "sssss", $title, $category, $target, $description, $id);
     if (mysqli_stmt_execute($stmt)) {
         echo json_encode(["status" => "success"]);
     } else {
