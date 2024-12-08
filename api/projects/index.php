@@ -36,6 +36,31 @@ if (
     mysqli_close($conn);
     die();
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+    $rawData = file_get_contents("php://input");
+
+    $data = json_decode($rawData, true);
+
+    $title = $data['title'] ?? null;
+    $category = $data['category'] ?? null;
+    $target = $data['target'] ?? null;
+    $description = $data['description'] ?? null;
+
+    $sql = "UPDATE project SET title = ?, category = ?, donation_target = ?, description = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "ssss", $title, $category, $target, $description);
+    if (mysqli_stmt_execute($stmt)) {
+        echo json_encode(["status" => "success"]);
+    } else {
+        echo json_encode(["status" => "failed", "error" => mysqli_stmt_error($stmt)]);
+    }
+
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+    die();
+}
+
 $sql = 'SELECT * FROM project';
 $result = mysqli_query($conn, $sql);
 

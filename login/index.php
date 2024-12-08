@@ -35,7 +35,7 @@ include "../connection.php";
             data.append("email", email);
             data.append("password", password);
 
-            fetch("/api/login/", {
+            fetch("../api/login/", {
                 method: "POST",
                 body: data
             }).then(x => x.json())
@@ -114,8 +114,7 @@ include "../connection.php";
 
             </div>
             <span id="login-error" class="text-red-400 mb-4"></span>
-            <span class="ml-auto"><a href="/forgot" class="text-[#EC5A49]">Lupa Password</a></span>
-            <span class="ml-auto">Belum Memiliki Akun? <a href="/register" class="text-[#EC5A49]">Register</a></span>
+            <span class="ml-auto">Belum Memiliki Akun? <a href="../register" class="text-[#EC5A49]">Register</a></span>
             <button
                 class="bg-[#EC5A49] text-[#F8F4E8]-900 px-8 py-2 rounded-lg mt-4 hover:opacity-60 active:scale-[.98] duration-300"
                 onclick="login()">
@@ -158,7 +157,7 @@ include "../connection.php";
             </p>
         </div>
         <div
-            class="bg-[url('/login.webp')] bg-cover rounded-tl-3xl h-full md:min-w-[600px] min-w-screen w-full max-w-screen brightness-[40%]">
+            class="bg-[url('../login.webp')] bg-cover rounded-tl-3xl h-full md:min-w-[600px] min-w-screen w-full max-w-screen brightness-[40%]">
         </div>
     </div>
 </body>

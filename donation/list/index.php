@@ -20,12 +20,11 @@
 </head>
 
 <body class="bg-teal-900 text-white">
-
-    <header class="flex justify-between items-center p-6 z-50">
-        <div class="text-lg font-bold -ml-4 lg:ml-16">
-            <img src="../logo.svg" />
+    <header class="flex justify-between items-center p-6 z-50 flex-row">
+        <div class="text-lg font-bold ml-4 lg:ml-16">
+            <img src="../../logo.svg" />
         </div>
-        <nav class="space-x-2 lg:space-x-6 ml-4 flex flex-row ml-auto mr-auto">
+        <nav class="space-x-2 items-center justify-center w-full lg:space-x-6 -ml-48 flex flex-row ml-auto mr-auto">
             <a class="text-white hover:text-red-500 text-md lg:text-lg duration-300" href="../../">
                 Home
             </a>
@@ -38,7 +37,8 @@
             <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../../donation/list/">
                 List Donasi
             </a>
-            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap" href="../../login/" id="login-btn">
+            <a class="text-white hover:text-red-500 text-md lg:text-lg text-nowrap mr-auto" href="../../login/"
+                id="login-btn">
                 Masuk / Daftar
             </a>
             <script>
@@ -48,6 +48,7 @@
                     .then(x => x.json())
                     .then(res => {
                         if (res.id) {
+                            window.user = res
                             const loginBtn = document.getElementById("login-btn")
                             loginBtn.innerText = "Dashboard"
                             loginBtn.href = "/dashboard"
@@ -56,7 +57,8 @@
             </script>
         </nav>
     </header>
-    <div class="bg-[url('../../donation.webp')] bg-cover h-screen w-screen max-w-screen brightness-[70%] fixed top-0 -z-10">
+    <div
+        class="bg-[url('../../donation.webp')] bg-cover h-screen w-screen max-w-screen brightness-[70%] fixed top-0 -z-10">
     </div>
     <div>
         <h1 class="text-2xl lg:text-4xl text-center mt-36 lg:mt-72 mb-16">

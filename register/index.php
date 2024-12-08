@@ -61,7 +61,7 @@ include "../connection.php";
             data.append("phone", phone);
 
 
-            fetch("/api/register/", {
+            fetch("../api/register/", {
                 method: "POST",
                 body: data
             }).then(x=>x.json())
@@ -77,7 +77,7 @@ include "../connection.php";
         }
 
         closePopupButton.addEventListener('click', function () {
-            window.location.href = "/login"
+            window.location.href = "../login"
         });
 
         window.addEventListener('click', function (e) {
@@ -88,7 +88,7 @@ include "../connection.php";
     </script>
     <header class="flex justify-between items-center p-6">
         <div class="text-lg font-bold lg:ml-16">
-            <img src="/logo.svg" />
+            <img src="../logo.svg" />
         </div>
         <nav class="space-x-2 lg:space-x-6 ml-2 flex flex-row">
             <a class="text-white hover:text-red-500 text-md lg:text-lg" href="../">
@@ -107,7 +107,7 @@ include "../connection.php";
                 Masuk / Daftar
             </a>
             <script>
-                fetch("/api/my_user/", {
+                fetch("../api/my_user/", {
                     credentials: "include"
                 })
                     .then(x => x.json())
@@ -115,7 +115,7 @@ include "../connection.php";
                         if(res.id){
                             const loginBtn = document.getElementById("login-btn")
                             loginBtn.innerText = "Dashboard"
-                            loginBtn.href = "/dashboard"
+                            loginBtn.href = "../dashboard"
                         }
                     })
             </script>
@@ -212,7 +212,7 @@ include "../connection.php";
             </p>
         </div>
         <div
-            class="bg-[url('/register.webp')] bg-cover rounded-tl-3xl h-full md:min-w-[600px] min-w-screen w-full max-w-screen brightness-[40%]">
+            class="bg-[url('../register.webp')] bg-cover rounded-tl-3xl h-full md:min-w-[600px] min-w-screen w-full max-w-screen brightness-[40%]">
         </div>
     </div>
 

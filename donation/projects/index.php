@@ -16,7 +16,8 @@
         * {
             font-family: "Josefin Sans", sans-serif;
         }
-        *::selection{
+
+        *::selection {
             background-color: #EC5A49;
         }
     </style>
@@ -135,6 +136,46 @@
             </div>
         </div>
     </div>
+    <div id="updateProjectPopUp"
+        class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden z-50">
+        <div class="bg-white rounded-lg p-6 max-w-md w-full text-center z-50 flex flex-col">
+            <button id="closeUpdateProjectPopup" class="text-[#EC5A49] px-4 py-2 rounded-lg ml-auto text-2xl">
+                x
+            </button>
+            <h1 class="text-black mb-4" id="headingUpdate">Ubah Project {id}</h1>
+            <div class="flex flex-col mt-4">
+                <h1 class="font-bold text-md text-black mr-auto">Judul Project</h1>
+                <input id="titleUpdate" placeholder="Membantu banjir" type="text"
+                    class="border-2 text-md border-gray-400 text-gray-400 rounded-xl bg-white px-6 py-3" />
+            </div>
+            <div class="flex flex-col mt-4">
+                <h1 class="font-bold text-md text-black mr-auto">Deskripsi</h1>
+                <textarea rows="4" id="descriptionUpdate" placeholder="Menjaga banjir" type="text"
+                    class="border-2 text-md border-gray-400 text-gray-400 rounded-xl bg-white px-6 py-3"></textarea>
+            </div>
+            <h1 class="font-bold text-md text-black mr-auto mt-4">Category</h1>
+            <div class="bg-white px-6 rounded-full flex text-black">
+                <select id="categoryUpdate" name="category"
+                    class="py-3 text-lg w-full max-w-[300px] rounded-full focus:outline-none">
+                    <option value="Pendidikan">Dana Pendidikan</option>
+                    <option value="Bencana Alam">Dana Bencana Alam</option>
+                    <option value="Sosial">Dana sosial</option>
+                </select>
+            </div>
+
+            <div class="flex mt-4 justify-center items-center gap-2">
+                <span class="text-black text-sm">Nominal Target Donasi:</span>
+                <input id="targetUpdate" placeholder="Rp. 5.000.000,00" type="text"
+                    class="ml-auto border-2 text-md border-gray-400 text-gray-400 rounded-xl bg-white px-6 py-3" />
+            </div>
+            <div class="flex justify-center items-center mt-4">
+                <a class="cursor-pointer bg-[#EC5A49] text-white px-8 py-3 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 mx-4"
+                    onclick="document.getElementById('addProjectPopup').classList.add('hidden')"> Cancel</a>
+                <a class="bg-[#EC5A49] text-white px-8 py-3 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 mx-4"
+                    onclick="uploadProject()" href="#"> Update</a>
+            </div>
+        </div>
+    </div>
     <script>
         window.user = {}
     </script>
@@ -212,10 +253,12 @@
     </div>
     <script>
         const addProjectPopup = document.getElementById('addProjectPopUp');
+        const updateProjectPopup = document.getElementById('updateProjectPopUp');
         const detailProjectPopUp = document.getElementById('detailProjectPopUp');
         const showPopupButton = document.getElementById('add-project');
         const closeAddProjectPopup = document.getElementById('closeAddProjectPopup');
         const closeDetailProjectPopup = document.getElementById('closeDetailProjectPopup')
+        const closeUpdateProjectPopup = document.getElementById('closeUpdateProjectPopup')
         showPopupButton.addEventListener("click", (e) => {
             addProjectPopup.classList.remove("hidden")
         })
@@ -225,6 +268,10 @@
         });
         closeDetailProjectPopup.addEventListener('click', () => {
             detailProjectPopUp.classList.add('hidden');
+            console.log("closing detail project")
+        })
+        closeUpdateProjectPopup.addEventListener('click', () => {
+            updateProjectPopup.classList.add('hidden');
             console.log("closing detail project")
         })
         window.addEventListener('click', function (e) {
@@ -241,25 +288,25 @@
     const category = document.getElementById("category")
     const target = document.getElementById("target")
     function uploadProject() {
-            const uploadImage = document.getElementById("upload-image")
-            const uploadImage2 = document.getElementById("upload-image2")
-            const uploadImage3 = document.getElementById("upload-image3")
-            const target = document.getElementById("target")
-            const title = document.getElementById("title")
-            const description = document.getElementById("description")
-            const categoryAdd = document.getElementById("categoryAdd")
-            const formData = new FormData();
-            formData.append('mainImage', uploadImage.files[0])
-            formData.append('documentation1', uploadImage2.files[0])
-            formData.append('documentation2', uploadImage3.files[0])
-            formData.append('title', title.value)
-            formData.append('category', category.value)
-            formData.append('description', description.value)
-            formData.append('target', target.value)
-            fetch("../../api/projects/", {
-                method: "POST",
-                body: formData
-            })
+        const uploadImage = document.getElementById("upload-image")
+        const uploadImage2 = document.getElementById("upload-image2")
+        const uploadImage3 = document.getElementById("upload-image3")
+        const target = document.getElementById("target")
+        const title = document.getElementById("title")
+        const description = document.getElementById("description")
+        const categoryAdd = document.getElementById("categoryAdd")
+        const formData = new FormData();
+        formData.append('mainImage', uploadImage.files[0])
+        formData.append('documentation1', uploadImage2.files[0])
+        formData.append('documentation2', uploadImage3.files[0])
+        formData.append('title', title.value)
+        formData.append('category', category.value)
+        formData.append('description', description.value)
+        formData.append('target', target.value)
+        fetch("../../api/projects/", {
+            method: "POST",
+            body: formData
+        })
             .then((response) => response.json())
             .then((data) => {
                 if (data.status === "success") {
@@ -276,7 +323,7 @@
                     render(projectData)
                 }
             })
-        }
+    }
     target.addEventListener("keydown", (event) => {
         const key = event.key;
         if (isNaN(parseInt(key)) && key !== "Backspace" && key !== "Delete") {
@@ -369,7 +416,7 @@
                             <img alt="${project.title}" class="mb-4 rounded-lg w-full h-48 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
                             src="../../uploads/project-${project.id}/main.jpg" />
                             <div id="add-project" class="absolute top-[10px] right-[10px]">
-                                <button class="bg-[#EC5A49] text-white px-4 py-4 rounded-lg hover:cursor-pointer hover:opacity-70 active:scale-97 duration-300">Update</button>
+                                <button onclick="updateProjectDetail(${project.id})" class="bg-[#EC5A49] text-white px-4 py-4 rounded-lg hover:cursor-pointer hover:opacity-70 active:scale-97 duration-300">Update</button>
                             </div>
                         </div>
                         <div class="py-6 px-9 flex flex-col h-[320px]">
@@ -413,7 +460,49 @@
         .catch(error => {
             console.error('Error fetching project data:', error);
         });
-
+    function updateProjectDetail(projectId) {
+        const selectedProject = projectData.find(project => parseInt(project.id) === projectId);
+        if (selectedProject) {
+            document.getElementById('updateProjectPopUp').classList.remove('hidden');
+            const heading = document.getElementById("headingUpdate")
+            const title = document.getElementById("titleUpdate")
+            const description = document.getElementById("descriptionUpdate")
+            const category = document.getElementById("categoryUpdate")
+            const target = document.getElementById("targetUpdate")
+            heading.innerHTML.replace("{id}", projectId)
+            fetch("../../api/projects/", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    title: title.value,
+                    description: description.value,
+                    category: category.value,
+                    target: target.value
+                })
+            })
+                .then(x => x.json())
+                .then(x => {
+                    if (x.status === "success") {
+                        const newProjects = projectData.map(x => {
+                            if (parseInt(x.id) !== projectId) {
+                                return x
+                            }
+                            return {
+                                ...x,
+                                title: title.value,
+                                description: description.value,
+                                category: category.value,
+                                donation_target: target.value
+                            }
+                        })
+                        render(newProjects)
+                        projectData = newProjects
+                    }
+                })
+        }
+    }
     function showProjectDetail(projectId) {
         const selectedProject = projectData.find(project => parseInt(project.id) === projectId);
         if (selectedProject) {
