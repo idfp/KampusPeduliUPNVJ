@@ -375,10 +375,10 @@
             const progress = (project.donation / project.donation_target) * 100;
             const projectHTML = `
                 <div id="card-project" 
-                    class="bg-teal-900 text-white rounded-lg h-[540px] max-w-[450px]"
-                    data-id="${project.id}"
-                    onclick="showProjectDetail(${project.id})">
-                    <div class="relative mb-4 rounded-lg w-full h-48 overflow-hidden">
+                    class="bg-teal-900 text-white rounded-lg h-[540px] max-w-[450px]">
+                    <div class="relative mb-4 rounded-lg w-full h-48 overflow-hidden"
+                        data-id="${project.id}"
+                        onclick="showProjectDetail(${project.id})">
                         <img alt="${project.title}" class="mb-4 rounded-lg w-full h-48 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
                         src="../../uploads/project-${project.id}/main.jpg" />
                         <div id="add-project" class="absolute top-[10px] right-[10px]">
@@ -387,10 +387,14 @@
                         </div>
                         <div class="py-6 px-9 flex flex-col h-[320px]">
                             <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">Bantuan ${project.category}</span>
-                            <h3 class="text-xl font-bold my-2 text-left hover:text-slate-400 hover:cursor-pointer active:cursor-pointer duration-300">
+                            <h3 class="text-xl font-bold my-2 text-left hover:text-slate-400 hover:cursor-pointer active:cursor-pointer duration-300"
+                                data-id="${project.id}"
+                                onclick="showProjectDetail(${project.id})">
                                 ${project.title}
                             </h3>
-                            <p class="text-lg mb-4 text-left font-light text-ellipsis line-clamp-3">
+                            <p class="text-lg mb-4 text-left font-light text-ellipsis line-clamp-3"
+                                data-id="${project.id}"
+                                onclick="showProjectDetail(${project.id})">
                                 ${project.description}
                             </p>
                             <div class="flex flex-row mt-auto">

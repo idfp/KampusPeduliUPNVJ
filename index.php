@@ -78,7 +78,7 @@
             </div>
             <div class="text-center text-center mt-8">
                 <a class="bg-[#EC5A49] text-2xl text-white px-24 py-6 rounded-lg mb-4 inline-flex items-center font-bold hover:opacity-50 active:scale-97 duration-300 lg:mr-auto mx-auto lg:ml-0"
-                    href="../../donation"> Donasi</a>
+                    href="donation"> Donasi</a>
             </div>
         </div>
     </div>
@@ -272,19 +272,23 @@
             const progress = (project.donation / project.donation_target) * 100;
             const projectHTML = `
                 <div id="card-project" 
-                    class="bg-teal-900 text-white rounded-lg h-[540px] w-[480px] flex-shrink-0" 
-                    data-id="${project.id}"
-                    onclick="showProjectDetail(${project.id})">
-                    <div class="relative mb-4 rounded-lg w-full h-48 overflow-hidden">
+                    class="bg-teal-900 text-white rounded-lg h-[540px] w-[480px] flex-shrink-0" >
+                    <div class="relative mb-4 rounded-lg w-full h-48 overflow-hidden"
+                        data-id="${project.id}"
+                        onclick="showProjectDetail(${project.id})">
                         <img alt="${project.title}" class="mb-4 rounded-lg w-full h-48 object-cover hover:scale-125 hover:cursor-pointer active:cursor-pointer duration-500"
                             src="project${project.id}.webp" />
                     </div>
                     <div class="py-5 px-8 flex flex-col h-[320px]">
                         <span class="bg-[#EC5A49] px-4 rounded-full mr-auto">Bantuan ${project.category}</span>
-                        <h3 class="text-xl font-bold my-2 text-left hover:text-slate-400 hover:cursor-pointer active:cursor-pointer duration-300">
+                        <h3 class="text-xl font-bold my-2 text-left hover:text-slate-400 hover:cursor-pointer active:cursor-pointer duration-300"
+                            data-id="${project.id}"
+                            onclick="showProjectDetail(${project.id})">
                             ${project.title}
                         </h3>
-                        <p class="text-lg mb-4 text-left font-light text-ellipsis line-clamp-3">
+                        <p class="text-lg mb-4 text-left font-light text-ellipsis line-clamp-3"
+                            data-id="${project.id}"
+                            onclick="showProjectDetail(${project.id})">
                             ${project.description}
                         </p>
                         <div class="flex flex-row mt-auto">
